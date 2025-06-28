@@ -1,40 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# KaaryaSiddhi 🎯  
+**Kaarya. Karma. Siddhi.**
 
-## Getting Started
+KaaryaSiddhi is a full-stack mentorship platform built for B.Tech students, aiming to transform complete beginners into industry-ready Full Stack Developers. It offers a structured level-based curriculum, task submission tracking, parent monitoring tools, and in-browser coding practice — all in one powerful platform.
 
-First, run the development server:
+---
+
+## 🚀 Vision
+
+To guide students step-by-step from “Zero to Software Hero” by blending self-paced learning, practical project work, and real-world exposure through GitHub, LinkedIn, and collaborative activities.
+
+---
+
+## 🧭 Learning Journey
+
+KaaryaSiddhi breaks down the mentorship into **8 Levels (Level 0 to Level 7)**. Each level includes:
+
+- 🎯 **Skill-Based Tasks**
+- ✅ **Manual Review & Level Promotion**
+- 🔁 **Rematch / Retry Options**
+- 📈 **Focus on Real-World Visibility (GitHub + LinkedIn)**
+
+Each student progresses at their own pace with weekly check-ins to ensure consistency and clarity.
+
+---
+
+## 🧩 Core Features
+
+### 👨‍🎓 Student Panel
+- 📌 View Current Level & Progress
+- 📎 Submit Tasks (links, files, screenshots)
+- 🧪 Practice Coding in JS Playground
+- 🧊 Freeze Streak (on request)
+- 🔓 Manual Upgrade after Task Validation
+
+### 👪 Parent Panel
+- 📋 View Child’s Level, Tasks, and Fees
+- 💰 Upload Payment Proof
+- 📊 Monitor Progress & Status Transparently
+
+### 🛠️ Admin Panel
+- 🎛️ Manage Students, Levels & Tasks
+- 🧑‍🏫 Validate Submissions & Promote Levels
+- 🔔 Manually Send Notifications
+- 🧾 Track Fee Submissions
+
+---
+
+## 📍 Tech Stack
+
+- **Frontend**: Next.js + TailwindCSS
+- **Backend**: API Routes in Next.js
+- **Database**: MongoDB (Mongoose)
+- **Storage**: Cloudinary (for images & screenshots)
+- **Code Execution**: Custom runtime setup for JS + (Python, C, Java coming soon)
+- **Deployments**: Vercel (Frontend), Railway (optional for Judge0 backend)
+
+---
+
+## 🎯 Special Highlights
+
+- 🧠 AI-Assisted Task Generation (future)
+- 🛑 Streak system **disabled** in MVP due to complexity
+- 👨‍🏫 Manual but flexible validation for higher accuracy
+- 💻 POTD (Problem of the Day) **exclusive to desktop**
+- 🎥 Watch + Learn section (YouTube integration with progress tracking)
+
+---
+
+## 📚 Example User Journey
+
+1. **Student registers** → lands on Level 1
+2. **Starts submitting tasks** → receives feedback from mentor
+3. **Level up manually after review** → unlock next challenges
+4. **Parents track everything** → fee status, tasks, and child's dedication
+5. **Admin keeps things smooth** → no automation chaos, just clarity
+
+---
+
+## 🧪 Local Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+# Visit
+https://kaaryasiddhi.vercel.app/
