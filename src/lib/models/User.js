@@ -62,6 +62,13 @@ const userSchema = new mongoose.Schema({
             message: "Please Provide Valid Parent Phone Number"
         }
     },
+    isSubscribed: {
+        type: Boolean,
+        default: false
+    },
+    subscriptionExpiry: {
+        type: Date
+    },
     createdAt: {
         type: Date,
         default: Date.now

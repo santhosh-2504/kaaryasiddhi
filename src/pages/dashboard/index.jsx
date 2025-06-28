@@ -8,6 +8,7 @@ import { LuMoveRight } from "react-icons/lu";
 import MyProfile from "@/components/dashboard/MyProfile";
 import UpdateProfile from "@/components/dashboard/UpdateProfile";
 import UpdatePassword from "@/components/dashboard/UpdatePassword";
+import FeePayment from "@/components/dashboard/FeePayment";
 // import DeleteAccount from "@/components/dashboard/DeleteAccount";
 
 const Dashboard = () => {
@@ -82,6 +83,8 @@ const Dashboard = () => {
                   { name: "My Profile", component: "My Profile" },
                   { name: "Update Profile", component: "Update Profile" },
                   { name: "Update Password", component: "Update Password" },
+                  { name: "Pay Fee", component: "Pay Fee" },
+
                 ].map(({ name, component }, index) => (
                   <li key={index}>
                     <button
@@ -139,6 +142,9 @@ const Dashboard = () => {
                     return <UpdateProfile />;
                   case "Update Password":
                     return <UpdatePassword />;
+                  case "Pay Fee":
+                    return <FeePayment />;
+
                   // case "Delete Account":
                   //   return <DeleteAccount />;
                   default:

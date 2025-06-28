@@ -8,6 +8,7 @@ import submissionReducer from "@/store/slices/submissionSlice";
 import dashboardReducer from "@/store/slices/dashboardSlice";
 import chatReducer from "@/store/slices/chatSlice";
 import practiceReducer from "@/store/slices/practiceSlice";
+import paymentReducer from "@/store/slices/paymentSlice";
 
 
 export const store = configureStore({
@@ -20,6 +21,7 @@ export const store = configureStore({
     dashboard: dashboardReducer,
     chat: chatReducer,
     practice: practiceReducer,
+    payment: paymentReducer,
 
   },
 });

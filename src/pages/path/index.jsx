@@ -25,7 +25,7 @@ const PathPage = () => {
   const submissionError = useSelector((state) => state.user.submissionError);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const user = useSelector((state) => state.user.user);
-  const currentLevel = user?.currentLevel ?? 0;
+  const currentLevel = user?.isSubscribed ? (user?.currentLevel ?? 0) : 0;
 
   // Fetch all level titles/descriptions once
   useEffect(() => {

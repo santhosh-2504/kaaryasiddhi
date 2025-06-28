@@ -8,7 +8,8 @@ export default function ResourcePage() {
     (state) => state.resources
   );
   const user = useSelector((state) => state.user.user);
-  const currentUserLevel = user?.currentLevel ?? 0;
+  const currentUserLevel = user?.isSubscribed ? (user?.currentLevel ?? 0) : 0;
+
 
   useEffect(() => {
     dispatch(fetchResources());

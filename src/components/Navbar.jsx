@@ -139,6 +139,13 @@ const Navbar = () => {
                   >
                     SUBMISSIONS
                   </Link>
+                  <Link
+                    href="/payments"
+                    className="text-gray-800 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white"
+                    onClick={handleLinkClick}
+                  >
+                    PAYMENTS
+                  </Link>
                 </>
               )}
               {isAuthenticated ? (
@@ -306,6 +313,13 @@ const Navbar = () => {
                       onClick={handleLinkClick}
                     >
                       SUBMISSIONS
+                    </Link>
+                    <Link
+                      href="/payments"
+                      className="px-3 py-2 text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors duration-200"
+                      onClick={handleLinkClick}
+                    >
+                      PAYMENTS
                     </Link>
                   </>
                 )}
