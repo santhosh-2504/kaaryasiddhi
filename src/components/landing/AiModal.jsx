@@ -148,12 +148,12 @@ export default function AIModal() {
         {/* Chat Bubble */}
         {!isOpen && showBubble && (
           <div className="relative animate-fadeInUp">
-            <div className="bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-4 py-3 rounded-2xl rounded-br-md shadow-xl border border-slate-200 dark:border-slate-700 max-w-[200px] transform transition-all duration-300 hover:scale-105">
+            <div className="bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-4 py-3 rounded-2xl rounded-br-md shadow-xl border border-slate-200 dark:border-slate-700 max-w-[200px] transform transition-all duration-300 hover:scale-105 relative">
               <p className="text-sm font-medium leading-relaxed">
                 {invitingMessages[currentMessageIndex]}
               </p>
-              {/* Speech bubble tail */}
-              <div className="absolute bottom-0 right-4 w-3 h-3 bg-white dark:bg-slate-800 border-r border-b border-slate-200 dark:border-slate-700 transform rotate-45 translate-y-1.5"></div>
+              {/* Speech bubble tail (points right) */}
+              <div className="absolute top-1/2 -right-1.5 w-3 h-3 bg-white dark:bg-slate-800 border-t border-r border-slate-200 dark:border-slate-700 transform -translate-y-1/2 rotate-45"></div>
             </div>
             {/* Pulse animation ring */}
             <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-emerald-500/20 rounded-full animate-ping"></div>
