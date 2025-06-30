@@ -1,11 +1,31 @@
 import dynamic from "next/dynamic";
+import { useRef } from "react";
 
 const Editor = dynamic(() => import("@monaco-editor/react"), { ssr: false });
 
 export default function CodeEditor({ code, onChange, language }) {
+  const editorRef = useRef(null);
+
   const map = {
     javascript: "javascript",
-    //python: "python",
+    // python: "python",
+  };
+
+  const handleEditorDidMount = (editor, monaco) => {
+    editorRef.current = editor;
+
+    // ❌ Prevent paste
+    editor.onDidPaste(() => {
+      editor.trigger("keyboard", "undo", null);
+    });
+
+    // Optional: disable right-click context menu
+    editor.updateOptions({
+      contextmenu: false,
+    });
+
+    // Optional: disable Ctrl+V (paste)
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyV, () => {    });
   };
 
   return (
@@ -15,24 +35,13 @@ export default function CodeEditor({ code, onChange, language }) {
       value={code}
       onChange={onChange}
       theme="vs-dark"
+      onMount={handleEditorDidMount}
       options={{
         fontSize: 14,
         minimap: { enabled: false },
-        scrollBeyondLastLine: false
+        scrollBeyondLastLine: false,
+        clipboard: false, // disables some clipboard behaviors
       }}
     />
   );
 }
-
-// function CodeEditor({ code, onChange, language }) {
-//   return (
-//     <div className="h-full w-full">
-//       <textarea
-//         value={code}
-//         onChange={(e) => onChange(e.target.value)}
-//         className="w-full h-full bg-slate-900 text-green-300 font-mono text-sm p-4 resize-none focus:outline-none"
-//         placeholder={`Write your ${language} code here...`}
-//       />
-//     </div>
-//   );
-// }

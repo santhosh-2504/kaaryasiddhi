@@ -9,14 +9,12 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
-  const [sidebarVisible, setSidebarVisible] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleLinkClick = () => {
-    setSidebarVisible(false);
     setShow(false);
   };
 
@@ -28,7 +26,6 @@ const Navbar = () => {
     dispatch(logout());
     toast.success("Logged out successfully.");
     setShowLogoutModal(false);
-    setSidebarVisible(false);
     setShow(false);
   };
 
@@ -224,14 +221,12 @@ const Navbar = () => {
         {/* Hover trigger area */}
         <div 
           className="fixed left-0 top-0 w-4 h-full z-40"
-          onMouseEnter={() => setSidebarVisible(true)}
         />
         
         {/* Sidebar */}
         <nav
           className={`fixed left-0 top-0 h-full bg-white dark:bg-gray-900 shadow-lg transition-transform duration-300 ease-in-out z-50 
-          ${sidebarVisible ? 'translate-x-0' : '-translate-x-full'}`}
-          onMouseLeave={() => setSidebarVisible(false)}
+          `}
           role="navigation"
           aria-label="Desktop navigation"
         >
