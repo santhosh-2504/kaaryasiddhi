@@ -9,6 +9,7 @@ import MyProfile from "@/components/dashboard/MyProfile";
 import UpdateProfile from "@/components/dashboard/UpdateProfile";
 import UpdatePassword from "@/components/dashboard/UpdatePassword";
 import FeePayment from "@/components/dashboard/FeePayment";
+import Keys from "@/components/dashboard/Keys";
 // import DeleteAccount from "@/components/dashboard/DeleteAccount";
 
 const Dashboard = () => {
@@ -84,6 +85,7 @@ const Dashboard = () => {
                   { name: "Update Profile", component: "Update Profile" },
                   { name: "Update Password", component: "Update Password" },
                   { name: "Pay Fee", component: "Pay Fee" },
+                  { name: "Keys", component: "Keys" },
 
                 ].map(({ name, component }, index) => (
                   <li key={index}>
@@ -144,6 +146,8 @@ const Dashboard = () => {
                     return <UpdatePassword />;
                   case "Pay Fee":
                     return <FeePayment />;
+                  case "Keys":
+                    return <Keys />;
 
                   // case "Delete Account":
                   //   return <DeleteAccount />;

@@ -298,7 +298,8 @@ export default function PracticePage() {
   const defaultStarterCode = {
     javascript: `\nfunction main(input) {\n  // your code here\n}`,
     python: `def main():\n    # your code here\n    pass`,
-    java: `public class Main {\n  public static void main(String[] args) {\n    // your code here\n  }\n}`
+    java: `public class Main {\n  public static void main(String[] args) {\n    // your code here\n  }\n}`,
+    cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n  // your code here\n  return 0;\n}`
   };
 
   const [language, setLanguage] = useState("javascript");
