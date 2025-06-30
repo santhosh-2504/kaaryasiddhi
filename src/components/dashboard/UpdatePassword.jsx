@@ -99,7 +99,7 @@ const UpdatePassword = () => {
   );
 
   useEffect(() => {
-    if (error) {
+    if (error && error !== "Internal Server Error") {
       toast.error(error);
       dispatch(clearAllUpdateProfileErrors());
     }
