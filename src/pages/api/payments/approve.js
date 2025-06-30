@@ -15,12 +15,10 @@ export default catchAsync(async (req, res) => {
 
   const token = req.cookies.token;
   if (!token) {
-    return res
-      .status(401)
-      .json({
-        success: false,
-        message: "Please login to access this resource",
-      });
+    return res.status(401).json({
+      success: false,
+      message: "Please login to access this resource",
+    });
   }
 
   let adminUser;
