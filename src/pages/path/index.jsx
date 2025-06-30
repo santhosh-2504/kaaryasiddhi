@@ -1,13 +1,17 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTasksByLevel } from '@/store/slices/levelTaskSlice';
-import { submitTask, fetchSubmissions, clearSubmissionError } from '@/store/slices/userSlice';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTasksByLevel } from "@/store/slices/levelTaskSlice";
+import {
+  submitTask,
+  fetchSubmissions,
+  clearSubmissionError,
+} from "@/store/slices/userSlice";
 // import PageHeader from '@/components/level/PageHeader';
-import LevelCard from '@/components/level/level/LevelCard';
-import FooterMessage from '@/components/level/FooterMessage';
+import LevelCard from "@/components/level/level/LevelCard";
+import FooterMessage from "@/components/level/FooterMessage";
 
 const PathPage = () => {
   const [levels, setLevels] = useState([]);
@@ -19,10 +23,12 @@ const PathPage = () => {
   const dispatch = useDispatch();
   const tasksByLevel = useSelector((state) => state.levelTasks.tasksByLevel);
   const loadingLevels = useSelector((state) => state.levelTasks.loadingLevels);
-  
+
   // User submission states
   const submissions = useSelector((state) => state.user.submissions);
-  const submissionLoading = useSelector((state) => state.user.submissionLoading);
+  const submissionLoading = useSelector(
+    (state) => state.user.submissionLoading,
+  );
   const submissionError = useSelector((state) => state.user.submissionError);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const user = useSelector((state) => state.user.user);
@@ -33,9 +39,11 @@ const PathPage = () => {
     const fetchLevels = async () => {
       try {
         setLevelsLoading(true);
-        const res = await axios.get('/api/level/all');
+        const res = await axios.get("/api/level/all");
         if (res.data.success) {
-          const sorted = res.data.data.sort((a, b) => a.levelNumber - b.levelNumber);
+          const sorted = res.data.data.sort(
+            (a, b) => a.levelNumber - b.levelNumber,
+          );
           setLevels(sorted);
         }
       } catch (err) {
@@ -65,16 +73,16 @@ const PathPage = () => {
   };
 
   const handleSubmissionInputChange = (taskId, value) => {
-    setSubmissionInputs(prev => ({
+    setSubmissionInputs((prev) => ({
       ...prev,
-      [taskId]: value
+      [taskId]: value,
     }));
   };
 
   const handleShowSubmissionForm = (taskId) => {
-    setShowSubmissionForm(prev => ({
+    setShowSubmissionForm((prev) => ({
       ...prev,
-      [taskId]: !prev[taskId]
+      [taskId]: !prev[taskId],
     }));
     // Clear any previous errors
     if (submissionError) {
@@ -84,7 +92,7 @@ const PathPage = () => {
 
   const handleSubmitTask = async (taskId, levelNumber) => {
     const submissionLink = submissionInputs[taskId];
-    
+
     if (!submissionLink || !submissionLink.trim()) {
       alert("Please provide a submission link");
       return;
@@ -92,15 +100,15 @@ const PathPage = () => {
 
     try {
       await dispatch(submitTask(taskId, levelNumber, submissionLink.trim()));
-      
+
       // Clear form on successful submission
-      setSubmissionInputs(prev => ({
+      setSubmissionInputs((prev) => ({
         ...prev,
-        [taskId]: ''
+        [taskId]: "",
       }));
-      setShowSubmissionForm(prev => ({
+      setShowSubmissionForm((prev) => ({
         ...prev,
-        [taskId]: false
+        [taskId]: false,
       }));
     } catch (error) {
       console.error("Submission failed:", error);
@@ -117,7 +125,8 @@ const PathPage = () => {
               Road to Mastery
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-              Discover curated resources to enhance your learning journey across all levels
+              Discover curated resources to enhance your learning journey across
+              all levels
             </p>
           </div>
 

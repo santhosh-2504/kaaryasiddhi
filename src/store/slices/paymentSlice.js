@@ -1,54 +1,60 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 // Fetch pending payments
 export const fetchPendingPayments = createAsyncThunk(
-  'payment/fetchPending',
+  "payment/fetchPending",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/api/payments/pending');
+      const { data } = await axios.get("/api/payments/pending");
       return data.payments;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.message || 'Failed to fetch payments');
+      return rejectWithValue(
+        err.response?.data?.message || "Failed to fetch payments",
+      );
     }
-  }
+  },
 );
 
 // Approve payment
 export const approvePayment = createAsyncThunk(
-  'payment/approve',
+  "payment/approve",
   async (paymentId, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/api/payments/approve', { paymentId });
+      const { data } = await axios.post("/api/payments/approve", { paymentId });
       return { paymentId, message: data.message };
     } catch (err) {
-      return rejectWithValue(err.response?.data?.message || 'Failed to approve payment');
+      return rejectWithValue(
+        err.response?.data?.message || "Failed to approve payment",
+      );
     }
-  }
+  },
 );
 
 // Reject payment
 export const rejectPayment = createAsyncThunk(
-  'payment/reject',
+  "payment/reject",
   async (paymentId, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete('/api/payments/reject', {
-        data: { paymentId }
+      const { data } = await axios.delete("/api/payments/reject", {
+        data: { paymentId },
       });
       return { paymentId, message: data.message };
     } catch (err) {
-      return rejectWithValue(err.response?.data?.message || 'Failed to reject payment');
+      return rejectWithValue(
+        err.response?.data?.message || "Failed to reject payment",
+      );
     }
-  }
+  },
 );
 
 const paymentSlice = createSlice({
-  name: 'payment',
+  name: "payment",
   initialState: {
     payments: [],
     loading: false,
     error: null,
-    successMessage: null
+    successMessage: null,
   },
   reducers: {
     clearPaymentErrors: (state) => {
@@ -56,7 +62,7 @@ const paymentSlice = createSlice({
     },
     clearPaymentSuccess: (state) => {
       state.successMessage = null;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -74,7 +80,9 @@ const paymentSlice = createSlice({
       })
 
       .addCase(approvePayment.fulfilled, (state, action) => {
-        state.payments = state.payments.filter(p => p._id !== action.payload.paymentId);
+        state.payments = state.payments.filter(
+          (p) => p._id !== action.payload.paymentId,
+        );
         state.successMessage = action.payload.message;
       })
       .addCase(approvePayment.rejected, (state, action) => {
@@ -82,13 +90,15 @@ const paymentSlice = createSlice({
       })
 
       .addCase(rejectPayment.fulfilled, (state, action) => {
-        state.payments = state.payments.filter(p => p._id !== action.payload.paymentId);
+        state.payments = state.payments.filter(
+          (p) => p._id !== action.payload.paymentId,
+        );
         state.successMessage = action.payload.message;
       })
       .addCase(rejectPayment.rejected, (state, action) => {
         state.error = action.payload;
       });
-  }
+  },
 });
 
 export const { clearPaymentErrors, clearPaymentSuccess } = paymentSlice.actions;

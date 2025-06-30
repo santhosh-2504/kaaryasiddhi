@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearAllUpdateProfileErrors, updatePassword } from "@/store/slices/updateProfileSlice";
+import {
+  clearAllUpdateProfileErrors,
+  updatePassword,
+} from "@/store/slices/updateProfileSlice";
 import { getUser } from "@/store/slices/userSlice";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { RiLock2Fill } from "react-icons/ri";
@@ -11,12 +14,12 @@ const UpdatePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  
+
   // State for password visibility
   const [visibility, setVisibility] = useState({
     old: false,
     new: false,
-    confirm: false
+    confirm: false,
   });
 
   // State for password validation
@@ -27,10 +30,12 @@ const UpdatePassword = () => {
     hasUpper: false,
     hasLower: false,
     matches: false,
-    notSameAsOld: true
+    notSameAsOld: true,
   });
 
-  const { loading, error, isUpdated } = useSelector((state) => state.updateProfile);
+  const { loading, error, isUpdated } = useSelector(
+    (state) => state.updateProfile,
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,13 +50,13 @@ const UpdatePassword = () => {
       hasUpper: /[A-Z]/.test(password),
       hasLower: /[a-z]/.test(password),
       matches: password === confirmPass && password !== "",
-      notSameAsOld: password !== oldPass && password !== ""
+      notSameAsOld: password !== oldPass && password !== "",
     });
   };
 
   const handleUpdatePassword = () => {
-    const isValid = Object.values(validation).every(v => v);
-    
+    const isValid = Object.values(validation).every((v) => v);
+
     if (!isValid) {
       toast.error("Please ensure all password requirements are met");
       return;
@@ -65,9 +70,9 @@ const UpdatePassword = () => {
   };
 
   const toggleVisibility = (field) => {
-    setVisibility(prev => ({
+    setVisibility((prev) => ({
       ...prev,
-      [field]: !prev[field]
+      [field]: !prev[field],
     }));
   };
 
@@ -92,8 +97,12 @@ const UpdatePassword = () => {
       <p className={validation.matches ? "text-green-500" : "text-red-500"}>
         {validation.matches ? "✓ Passwords match" : "✗ Passwords do not match"}
       </p>
-      <p className={validation.notSameAsOld ? "text-green-500" : "text-red-500"}>
-        {validation.notSameAsOld ? "✓ Different from current password" : "✗ Must be different from current password"}
+      <p
+        className={validation.notSameAsOld ? "text-green-500" : "text-red-500"}
+      >
+        {validation.notSameAsOld
+          ? "✓ Different from current password"
+          : "✗ Must be different from current password"}
       </p>
     </div>
   );
@@ -137,7 +146,7 @@ const UpdatePassword = () => {
             />
             <button
               type="button"
-              onClick={() => toggleVisibility('old')}
+              onClick={() => toggleVisibility("old")}
               className="text-gray-500 focus:outline-none"
             >
               {visibility.old ? <FaEyeSlash /> : <FaEye />}
@@ -161,7 +170,7 @@ const UpdatePassword = () => {
             />
             <button
               type="button"
-              onClick={() => toggleVisibility('new')}
+              onClick={() => toggleVisibility("new")}
               className="text-gray-500 focus:outline-none"
             >
               {visibility.new ? <FaEyeSlash /> : <FaEye />}
@@ -185,7 +194,7 @@ const UpdatePassword = () => {
             />
             <button
               type="button"
-              onClick={() => toggleVisibility('confirm')}
+              onClick={() => toggleVisibility("confirm")}
               className="text-gray-500 focus:outline-none"
             >
               {visibility.confirm ? <FaEyeSlash /> : <FaEye />}
@@ -200,9 +209,9 @@ const UpdatePassword = () => {
         <div className="flex justify-end mt-6">
           <button
             onClick={handleUpdatePassword}
-            disabled={loading || !Object.values(validation).every(v => v)}
+            disabled={loading || !Object.values(validation).every((v) => v)}
             className={`w-full py-2 text-white font-medium rounded-md transition ${
-              loading || !Object.values(validation).every(v => v)
+              loading || !Object.values(validation).every((v) => v)
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-blue-500 hover:bg-blue-600"
             }`}

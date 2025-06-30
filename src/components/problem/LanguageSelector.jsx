@@ -6,7 +6,10 @@ export default function LanguageSelector({
   supportedLanguages,
 }) {
   // Fallback for empty supportedLanguages
-  const languages = supportedLanguages.length > 0 ? supportedLanguages : ["python", "javascript", "java", "cpp"];
+  const languages =
+    supportedLanguages.length > 0
+      ? supportedLanguages
+      : ["python", "javascript", "java", "cpp"];
 
   useEffect(() => {
     //console.log("LanguageSelector rendered with languages:", languages); // Debug log

@@ -1,22 +1,22 @@
-import { ArrowRight } from 'lucide-react';
-import PropTypes from 'prop-types';
-import { useRouter } from 'next/navigation';
-import { useSelector } from 'react-redux';
+import { ArrowRight } from "lucide-react";
+import PropTypes from "prop-types";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
-const FinalCTA = ({ className = '' }) => {
+const FinalCTA = ({ className = "" }) => {
   const router = useRouter();
-  const {isAuthenticated} = useSelector((state) => state.user);
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   const handleClick = () => {
     if (isAuthenticated) {
-      router.push('/path');
+      router.push("/path");
     } else {
-      router.push('/login');
+      router.push("/login");
     }
   };
 
   return (
-    <section 
+    <section
       className={`bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-700 dark:to-emerald-800 py-16 ${className}`}
       aria-label="Final call to action"
     >
@@ -25,7 +25,7 @@ const FinalCTA = ({ className = '' }) => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
             Are You Ready to Begin?
           </h2>
-          
+
           <p className="text-xl text-emerald-100 dark:text-emerald-200 mb-8 max-w-2xl mx-auto leading-relaxed">
             Join hundreds of students building their future one task at a time.
           </p>
@@ -47,7 +47,7 @@ const FinalCTA = ({ className = '' }) => {
 };
 
 FinalCTA.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default FinalCTA;

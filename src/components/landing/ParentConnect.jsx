@@ -1,8 +1,15 @@
-import { Users, Eye, CreditCard, Award, TrendingUp, FileText } from 'lucide-react';
-import PropTypes from 'prop-types';
+import {
+  Users,
+  Eye,
+  CreditCard,
+  Award,
+  TrendingUp,
+  FileText,
+} from "lucide-react";
+import PropTypes from "prop-types";
 
 const HighlightCard = ({ icon: Icon, title, description, className }) => (
-  <div 
+  <div
     className={`bg-white dark:bg-slate-800 shadow-lg rounded-xl p-6 border border-gray-100 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:bg-gray-50 dark:hover:bg-slate-700 ${className}`}
   >
     <div className="flex items-start space-x-4">
@@ -25,35 +32,39 @@ HighlightCard.propTypes = {
   icon: PropTypes.elementType.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
-const ParentConnect = ({ className = '' }) => {
+const ParentConnect = ({ className = "" }) => {
   const highlights = [
     {
       icon: TrendingUp,
       title: "Track your child's progress",
-      description: "Monitor learning milestones, completed tasks, and skill development in real-time."
+      description:
+        "Monitor learning milestones, completed tasks, and skill development in real-time.",
     },
     {
       icon: FileText,
       title: "See task submissions and level status",
-      description: "View detailed submissions, feedback from mentors, and current achievement levels."
+      description:
+        "View detailed submissions, feedback from mentors, and current achievement levels.",
     },
     {
       icon: CreditCard,
       title: "Monitor fee payments and upload receipts",
-      description: "Stay on top of payments with easy receipt uploads and payment history tracking."
+      description:
+        "Stay on top of payments with easy receipt uploads and payment history tracking.",
     },
     {
       icon: Award,
       title: "Know your child is learning real skills, not just marks",
-      description: "Focus on practical abilities and career-ready competencies that matter in the real world."
-    }
+      description:
+        "Focus on practical abilities and career-ready competencies that matter in the real world.",
+    },
   ];
 
   return (
-    <section 
+    <section
       className={`py-16 bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 ${className}`}
       aria-label="Parent Connect section"
     >
@@ -92,7 +103,7 @@ const ParentConnect = ({ className = '' }) => {
 };
 
 ParentConnect.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default ParentConnect;

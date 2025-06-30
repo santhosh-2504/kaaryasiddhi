@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import Link from 'next/link';
-import { clearAllUserErrors, login, resetAuthErrors } from "@/store/slices/userSlice";
+import Link from "next/link";
+import {
+  clearAllUserErrors,
+  login,
+  resetAuthErrors,
+} from "@/store/slices/userSlice";
 import { toast } from "react-toastify";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLock2Fill } from "react-icons/ri";
@@ -13,7 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  
+
   // Forgot Password States
   const [showForgotModal, setShowForgotModal] = useState(false);
   const [showOTPModal, setShowOTPModal] = useState(false);
@@ -27,9 +31,13 @@ const Login = () => {
 
   const router = useRouter();
   const dispatch = useDispatch();
-  
+
   // Redux state
-  const { error, isAuthenticated, loading: authLoading } = useSelector((state) => state.user);
+  const {
+    error,
+    isAuthenticated,
+    loading: authLoading,
+  } = useSelector((state) => state.user);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -39,7 +47,7 @@ const Login = () => {
     }
     const loginData = {
       email,
-      password
+      password,
     };
     dispatch(login(loginData));
   };
@@ -49,7 +57,7 @@ const Login = () => {
     try {
       setLoading(true);
       const { data } = await axios.post("/api/password/send-otp", {
-        email: forgotEmail
+        email: forgotEmail,
       });
       toast.success(data.message);
       setShowForgotModal(false);
@@ -68,7 +76,7 @@ const Login = () => {
       setLoading(true);
       const { data } = await axios.post("/api/password/verify-otp", {
         email: forgotEmail,
-        otp
+        otp,
       });
       toast.success(data.message);
       setShowOTPModal(false);
@@ -90,7 +98,7 @@ const Login = () => {
       const { data } = await axios.post("/api/password/reset-password", {
         email: forgotEmail,
         otp,
-        newPassword
+        newPassword,
       });
       toast.success(data.message);
       setShowResetModal(false);
@@ -121,7 +129,7 @@ const Login = () => {
   useEffect(() => {
     dispatch(resetAuthErrors());
     // Reset scroll position
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [dispatch]);
 
   // Navigate after successful login
@@ -130,11 +138,11 @@ const Login = () => {
       // Check if we have a return path in the state
       if (location.state?.from) {
         router.push(location.state.from, {
-          state: { applyAfterLogin: location.state.applyAfterLogin }
+          state: { applyAfterLogin: location.state.applyAfterLogin },
         });
       } else {
         // If no return path, go to default page
-        router.push('/');
+        router.push("/");
       }
     }
   }, [isAuthenticated]);
@@ -229,7 +237,7 @@ const Login = () => {
             </Link>
           </p>
           <p className="text-center mt-4 text-sm text-gray-600 dark:text-gray-400">
-          Forgot Password?{" "}
+            Forgot Password?{" "}
             <button
               type="button"
               onClick={() => setShowForgotModal(true)}
@@ -245,7 +253,9 @@ const Login = () => {
       {showForgotModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-xl font-semibold mb-4 dark:text-white">Forgot Password</h3>
+            <h3 className="text-xl font-semibold mb-4 dark:text-white">
+              Forgot Password
+            </h3>
             <form onSubmit={handleForgotPassword}>
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -284,7 +294,9 @@ const Login = () => {
       {showOTPModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-xl font-semibold mb-4 dark:text-white">Enter OTP</h3>
+            <h3 className="text-xl font-semibold mb-4 dark:text-white">
+              Enter OTP
+            </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
               Please enter the OTP sent to your email
             </p>
@@ -332,7 +344,9 @@ const Login = () => {
       {showResetModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-xl font-semibold mb-4 dark:text-white">Reset Password</h3>
+            <h3 className="text-xl font-semibold mb-4 dark:text-white">
+              Reset Password
+            </h3>
             <form onSubmit={handleResetPassword}>
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">

@@ -1,59 +1,67 @@
-export default function CompileButton({ code, language, publicTestCases, setOutput }) {
+export default function CompileButton({
+  code,
+  language,
+  publicTestCases,
+  setOutput,
+}) {
   const validateJavaScript = (code) => {
     try {
       // Basic syntax validation by creating a function
       new Function(code);
       return { valid: true, message: null };
     } catch (error) {
-      return { 
-        valid: false, 
-        message: `Syntax Error: ${error.message}` 
+      return {
+        valid: false,
+        message: `Syntax Error: ${error.message}`,
       };
     }
   };
 
   const checkCodeStructure = (code) => {
     const trimmedCode = code.trim();
-    
+
     if (!trimmedCode) {
-      return { valid: false, message: 'No code provided' };
+      return { valid: false, message: "No code provided" };
     }
 
     // Check for common issues
     const issues = [];
-    
+
     // Check for unmatched brackets
-    const brackets = { '(': 0, '[': 0, '{': 0 };
+    const brackets = { "(": 0, "[": 0, "{": 0 };
     for (const char of trimmedCode) {
-      if (char === '(') brackets['(']++;
-      else if (char === ')') brackets['(']--;
-      else if (char === '[') brackets['[']++;
-      else if (char === ']') brackets['[']--;
-      else if (char === '{') brackets['{']++;
-      else if (char === '}') brackets['{']--;
+      if (char === "(") brackets["("]++;
+      else if (char === ")") brackets["("]--;
+      else if (char === "[") brackets["["]++;
+      else if (char === "]") brackets["["]--;
+      else if (char === "{") brackets["{"]++;
+      else if (char === "}") brackets["{"]--;
     }
-    
-    if (brackets['('] !== 0) issues.push('Unmatched parentheses');
-    if (brackets['['] !== 0) issues.push('Unmatched square brackets');
-    if (brackets['{'] !== 0) issues.push('Unmatched curly braces');
-    
+
+    if (brackets["("] !== 0) issues.push("Unmatched parentheses");
+    if (brackets["["] !== 0) issues.push("Unmatched square brackets");
+    if (brackets["{"] !== 0) issues.push("Unmatched curly braces");
+
     if (issues.length > 0) {
-      return { valid: false, message: issues.join(', ') };
+      return { valid: false, message: issues.join(", ") };
     }
-    
+
     return { valid: true, message: null };
   };
 
   const executeCode = async (code, language, input) => {
     try {
       const createSafeFunction = (code, input) => {
-        if (language.toLowerCase() === 'javascript' || language.toLowerCase() === 'js') {
+        if (
+          language.toLowerCase() === "javascript" ||
+          language.toLowerCase() === "js"
+        ) {
           try {
-            let consoleOutput = '';
+            let consoleOutput = "";
             const mockConsole = {
               log: (...args) => {
-                consoleOutput += args.join(' ') + '\n';
-              }
+                consoleOutput += args.join(" ") + "\n";
+              },
             };
 
             const wrappedCode = `
@@ -65,14 +73,19 @@ export default function CompileButton({ code, language, publicTestCases, setOutp
             const func = new Function(wrappedCode);
             const result = func(input, mockConsole);
 
-            return consoleOutput.trim() || (result !== undefined ? String(result) : '');
+            return (
+              consoleOutput.trim() ||
+              (result !== undefined ? String(result) : "")
+            );
           } catch (error) {
             throw new Error(`Runtime Error: ${error.message}`);
           }
         }
 
-        if (language.toLowerCase() === 'python') {
-          throw new Error('Python execution not implemented in browser environment');
+        if (language.toLowerCase() === "python") {
+          throw new Error(
+            "Python execution not implemented in browser environment",
+          );
         }
 
         throw new Error(`Language '${language}' not supported`);
@@ -85,20 +98,20 @@ export default function CompileButton({ code, language, publicTestCases, setOutp
   };
 
   const normalizeOutput = (output) => {
-    return String(output).trim().replace(/\r\n/g, '\n');
+    return String(output).trim().replace(/\r\n/g, "\n");
   };
 
   const runPublicTests = async () => {
     if (!publicTestCases || publicTestCases.length === 0) {
       return {
         success: true,
-        message: 'No public test cases available. Code compiled successfully!'
+        message: "No public test cases available. Code compiled successfully!",
       };
     }
 
     let passedTests = 0;
     let totalTests = publicTestCases.length;
-    let resultLog = 'Running public test cases...\n\n';
+    let resultLog = "Running public test cases...\n\n";
 
     for (let i = 0; i < publicTestCases.length; i++) {
       const testCase = publicTestCases[i];
@@ -129,22 +142,22 @@ export default function CompileButton({ code, language, publicTestCases, setOutp
     resultLog += `Results: ${passedTests}/${totalTests} public tests passed\n`;
 
     if (passedTests === totalTests) {
-      resultLog += 'All public tests passed! Your solution looks good.';
+      resultLog += "All public tests passed! Your solution looks good.";
       return { success: true, message: resultLog };
     } else {
-      resultLog += 'Some public tests failed. Please review your solution.';
+      resultLog += "Some public tests failed. Please review your solution.";
       return { success: false, message: resultLog };
     }
   };
 
   const handleCompile = async () => {
     if (!code.trim()) {
-      setOutput('Please enter some code to compile.');
+      setOutput("Please enter some code to compile.");
       return;
     }
 
-    setOutput('Compiling and validating code...');
-    
+    setOutput("Compiling and validating code...");
+
     try {
       // Step 1: Check basic structure
       const structureCheck = checkCodeStructure(code);
@@ -161,19 +174,20 @@ export default function CompileButton({ code, language, publicTestCases, setOutp
       }
 
       // Step 3: Run against public test cases
-      setOutput('✅ Code compiled successfully!\n\nRunning public test cases...');
-      
+      setOutput(
+        "✅ Code compiled successfully!\n\nRunning public test cases...",
+      );
+
       const testResults = await runPublicTests();
       setOutput(testResults.message);
-      
     } catch (error) {
       setOutput(`❌ Compilation error: ${error.message}`);
     }
   };
 
   return (
-    <button 
-      onClick={handleCompile} 
+    <button
+      onClick={handleCompile}
       className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded transition-colors"
     >
       Compile & Test

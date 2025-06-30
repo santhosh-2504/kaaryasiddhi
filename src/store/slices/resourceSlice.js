@@ -1,10 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchResources = createAsyncThunk("resources/fetchAll", async () => {
-  const res = await axios.get("/api/resource/all");
-  return res.data.data;
-});
+export const fetchResources = createAsyncThunk(
+  "resources/fetchAll",
+  async () => {
+    const res = await axios.get("/api/resource/all");
+    return res.data.data;
+  },
+);
 
 const resourceSlice = createSlice({
   name: "resources",
@@ -14,7 +17,7 @@ const resourceSlice = createSlice({
     error: null,
     searchQuery: "",
     filterType: "",
-    filterLevel: ""
+    filterLevel: "",
   },
   reducers: {
     setSearchQuery: (state, action) => {
@@ -25,7 +28,7 @@ const resourceSlice = createSlice({
     },
     setFilterLevel: (state, action) => {
       state.filterLevel = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -40,8 +43,9 @@ const resourceSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message;
       });
-  }
+  },
 });
 
-export const { setSearchQuery, setFilterType, setFilterLevel } = resourceSlice.actions;
+export const { setSearchQuery, setFilterType, setFilterLevel } =
+  resourceSlice.actions;
 export default resourceSlice.reducer;

@@ -92,7 +92,10 @@ const userSlice = createSlice({
     fetchUserFailed(state, action) {
       state.loading = false;
       // Only update these states if not on login/register pages
-      if (window.location.pathname !== '/login' && window.location.pathname !== '/register') {
+      if (
+        window.location.pathname !== "/login" &&
+        window.location.pathname !== "/register"
+      ) {
         state.isAuthenticated = false;
         state.user = {
           name: "",
@@ -204,7 +207,7 @@ const userSlice = createSlice({
       state.loading = false;
       // Convert array to object with taskId as key
       const submissionsObj = {};
-      action.payload.forEach(submission => {
+      action.payload.forEach((submission) => {
         // Use submission.taskId._id if populated, else submission.taskId
         const taskId = submission.taskId?._id || submission.taskId;
         submissionsObj[taskId] = submission;
@@ -239,14 +242,10 @@ const userSlice = createSlice({
 export const register = (data) => async (dispatch) => {
   dispatch(userSlice.actions.registerRequest());
   try {
-    const response = await axios.post(
-      "/api/auth/register",
-      data,
-      {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await axios.post("/api/auth/register", data, {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    });
     dispatch(userSlice.actions.registerSuccess(response.data));
   } catch (error) {
     const errorMessage = error.response?.data?.message || "Registration Failed";
@@ -257,14 +256,10 @@ export const register = (data) => async (dispatch) => {
 export const login = (data) => async (dispatch) => {
   dispatch(userSlice.actions.loginRequest());
   try {
-    const response = await axios.post(
-      "/api/auth/login",
-      data,
-      {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await axios.post("/api/auth/login", data, {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    });
     dispatch(userSlice.actions.loginSuccess(response.data));
   } catch (error) {
     const errorMessage = error.response?.data?.message || "Login failed";
@@ -275,12 +270,9 @@ export const login = (data) => async (dispatch) => {
 export const getUser = () => async (dispatch) => {
   dispatch(userSlice.actions.fetchUserRequest());
   try {
-    const response = await axios.get(
-      "/api/auth/me",
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await axios.get("/api/auth/me", {
+      withCredentials: true,
+    });
     dispatch(userSlice.actions.fetchUserSuccess(response.data.user));
   } catch (error) {
     dispatch(userSlice.actions.fetchUserFailed(error.response?.data?.message));
@@ -289,12 +281,9 @@ export const getUser = () => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.get(
-      "/api/auth/logout",
-      {
-        withCredentials: true,
-      }
-    );
+    await axios.get("/api/auth/logout", {
+      withCredentials: true,
+    });
     dispatch(userSlice.actions.logoutSuccess());
   } catch (error) {
     dispatch(userSlice.actions.logoutFailed(error.response?.data?.message));
@@ -310,11 +299,12 @@ export const freezeStreak = () => async (dispatch) => {
       {
         withCredentials: true,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
     dispatch(userSlice.actions.freezeStreakSuccess(response.data));
   } catch (error) {
-    const errorMessage = error.response?.data?.message || "Failed to freeze streak";
+    const errorMessage =
+      error.response?.data?.message || "Failed to freeze streak";
     dispatch(userSlice.actions.freezeStreakFailed(errorMessage));
   }
 };
@@ -328,7 +318,7 @@ export const sendPasswordResetOTP = (email) => async (dispatch) => {
       { email },
       {
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
     dispatch(userSlice.actions.sendOTPSuccess(response.data));
   } catch (error) {
@@ -340,61 +330,62 @@ export const sendPasswordResetOTP = (email) => async (dispatch) => {
 export const resetPassword = (resetData) => async (dispatch) => {
   dispatch(userSlice.actions.resetPasswordRequest());
   try {
-    const response = await axios.post(
-      "/api/auth/reset-password",
-      resetData,
-      {
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await axios.post("/api/auth/reset-password", resetData, {
+      headers: { "Content-Type": "application/json" },
+    });
     dispatch(userSlice.actions.resetPasswordSuccess(response.data));
   } catch (error) {
-    const errorMessage = error.response?.data?.message || "Failed to reset password";
+    const errorMessage =
+      error.response?.data?.message || "Failed to reset password";
     dispatch(userSlice.actions.resetPasswordFailed(errorMessage));
   }
 };
 
 // Task submission action creators
-export const submitTask = (taskId, levelNumber, submissionLink) => async (dispatch) => {
-  dispatch(userSlice.actions.submitTaskRequest(taskId));
-  try {
-    const response = await axios.post(
-      "/api/auth/submit",
-      {
-        taskId,
-        levelNumber,
-        submissionLink,
-      },
-      {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    dispatch(userSlice.actions.submitTaskSuccess({
-      taskId,
-      submission: response.data.data,
-    }));
-  } catch (error) {
-    const errorMessage = error.response?.data?.message || "Failed to submit task";
-    dispatch(userSlice.actions.submitTaskFailed({
-      taskId,
-      error: errorMessage,
-    }));
-  }
-};
+export const submitTask =
+  (taskId, levelNumber, submissionLink) => async (dispatch) => {
+    dispatch(userSlice.actions.submitTaskRequest(taskId));
+    try {
+      const response = await axios.post(
+        "/api/auth/submit",
+        {
+          taskId,
+          levelNumber,
+          submissionLink,
+        },
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+      dispatch(
+        userSlice.actions.submitTaskSuccess({
+          taskId,
+          submission: response.data.data,
+        }),
+      );
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || "Failed to submit task";
+      dispatch(
+        userSlice.actions.submitTaskFailed({
+          taskId,
+          error: errorMessage,
+        }),
+      );
+    }
+  };
 
 export const fetchSubmissions = () => async (dispatch) => {
   dispatch(userSlice.actions.fetchSubmissionsRequest());
   try {
-    const response = await axios.get(
-      "/api/auth/submissions",
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await axios.get("/api/auth/submissions", {
+      withCredentials: true,
+    });
     dispatch(userSlice.actions.fetchSubmissionsSuccess(response.data.data));
   } catch (error) {
-    const errorMessage = error.response?.data?.message || "Failed to fetch submissions";
+    const errorMessage =
+      error.response?.data?.message || "Failed to fetch submissions";
     dispatch(userSlice.actions.fetchSubmissionsFailed(errorMessage));
   }
 };

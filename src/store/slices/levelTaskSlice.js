@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const levelTaskSlice = createSlice({
-  name: 'levelTasks',
+  name: "levelTasks",
   initialState: {
-    tasksByLevel: {},       // Stores tasks for each levelNumber
-    loadingLevels: [],      // Tracks loading states for each levelNumber
+    tasksByLevel: {}, // Stores tasks for each levelNumber
+    loadingLevels: [], // Tracks loading states for each levelNumber
     error: null,
     message: null,
   },
@@ -22,13 +22,13 @@ const levelTaskSlice = createSlice({
       const { levelNumber, tasks } = action.payload;
       state.tasksByLevel[levelNumber] = tasks;
       state.loadingLevels = state.loadingLevels.filter(
-        (lvl) => lvl !== levelNumber
+        (lvl) => lvl !== levelNumber,
       );
     },
     fetchTasksFailed(state, action) {
       const { levelNumber, error } = action.payload;
       state.loadingLevels = state.loadingLevels.filter(
-        (lvl) => lvl !== levelNumber
+        (lvl) => lvl !== levelNumber,
       );
       state.error = error;
     },
@@ -41,8 +41,8 @@ const levelTaskSlice = createSlice({
     // Clear errors
     clearTaskErrors(state) {
       state.error = null;
-    }
-  }
+    },
+  },
 });
 
 export const {
@@ -57,20 +57,18 @@ export const fetchTasksByLevel = (levelNumber) => async (dispatch) => {
   dispatch(fetchTasksRequest(levelNumber));
   try {
     const response = await axios.get(`/api/task/${levelNumber}`, {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" },
     });
 
     if (!response.data.success) {
-      throw new Error(response.data.message || 'Failed to fetch tasks');
+      throw new Error(response.data.message || "Failed to fetch tasks");
     }
 
     dispatch(fetchTasksSuccess({ levelNumber, tasks: response.data.data }));
   } catch (error) {
     console.error(`Error fetching tasks for level ${levelNumber}:`, error);
     const errorMessage =
-      error.response?.data?.message ||
-      error.message ||
-      'Failed to fetch tasks';
+      error.response?.data?.message || error.message || "Failed to fetch tasks";
     dispatch(fetchTasksFailed({ levelNumber, error: errorMessage }));
   }
 };

@@ -1,20 +1,28 @@
 import { useState } from "react";
 import StreakModal from "@/components/practice/StreakModal";
 
-export default function SubmitButton({ code, language, hiddenTestCases, setOutput }) {
+export default function SubmitButton({
+  code,
+  language,
+  hiddenTestCases,
+  setOutput,
+}) {
   const [showStreakModal, setShowStreakModal] = useState(false);
   const [userStreak, setUserStreak] = useState(0);
 
   const executeCode = async (code, language, input) => {
     try {
       const createSafeFunction = (code, input) => {
-        if (language.toLowerCase() === 'javascript' || language.toLowerCase() === 'js') {
+        if (
+          language.toLowerCase() === "javascript" ||
+          language.toLowerCase() === "js"
+        ) {
           try {
-            let consoleOutput = '';
+            let consoleOutput = "";
             const mockConsole = {
               log: (...args) => {
-                consoleOutput += args.join(' ') + '\n';
-              }
+                consoleOutput += args.join(" ") + "\n";
+              },
             };
 
             const wrappedCode = `
@@ -26,14 +34,19 @@ export default function SubmitButton({ code, language, hiddenTestCases, setOutpu
             const func = new Function(wrappedCode);
             const result = func(input, mockConsole);
 
-            return consoleOutput.trim() || (result !== undefined ? String(result) : '');
+            return (
+              consoleOutput.trim() ||
+              (result !== undefined ? String(result) : "")
+            );
           } catch (error) {
             throw new Error(`Runtime Error: ${error.message}`);
           }
         }
 
-        if (language.toLowerCase() === 'python') {
-          throw new Error('Python execution not implemented in browser environment');
+        if (language.toLowerCase() === "python") {
+          throw new Error(
+            "Python execution not implemented in browser environment",
+          );
         }
 
         throw new Error(`Language '${language}' not supported`);
@@ -46,32 +59,36 @@ export default function SubmitButton({ code, language, hiddenTestCases, setOutpu
   };
 
   const normalizeOutput = (output) => {
-    return String(output).trim().replace(/\r\n/g, '\n');
+    return String(output).trim().replace(/\r\n/g, "\n");
   };
 
   const handleSubmit = async () => {
     if (!code.trim()) {
-      setOutput('Please enter some code before submitting.');
+      setOutput("Please enter some code before submitting.");
       return;
     }
 
     if (!hiddenTestCases || hiddenTestCases.length === 0) {
-      setOutput('No test cases available.');
+      setOutput("No test cases available.");
       return;
     }
 
-    setOutput('Evaluating solution...');
+    setOutput("Evaluating solution...");
 
     try {
       let passedTests = 0;
       let totalTests = hiddenTestCases.length;
-      let resultLog = '';
+      let resultLog = "";
 
       for (let i = 0; i < hiddenTestCases.length; i++) {
         const testCase = hiddenTestCases[i];
 
         try {
-          const actualOutput = await executeCode(code, language, testCase.input);
+          const actualOutput = await executeCode(
+            code,
+            language,
+            testCase.input,
+          );
           const normalizedActual = normalizeOutput(actualOutput);
           const normalizedExpected = normalizeOutput(testCase.expectedOutput);
 
@@ -93,7 +110,7 @@ export default function SubmitButton({ code, language, hiddenTestCases, setOutpu
       resultLog += `\nResults: ${passedTests}/${totalTests} tests passed\n`;
 
       if (passedTests === totalTests) {
-        resultLog += 'Congratulations! All tests passed.';
+        resultLog += "Congratulations! All tests passed.";
 
         // ✅ Trigger streak API
         try {
@@ -107,7 +124,7 @@ export default function SubmitButton({ code, language, hiddenTestCases, setOutpu
           console.error("Streak update failed", err);
         }
       } else {
-        resultLog += 'Some tests failed. Please review your solution.';
+        resultLog += "Some tests failed. Please review your solution.";
       }
 
       setOutput(resultLog);

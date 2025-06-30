@@ -10,7 +10,7 @@ import { getUser } from "@/store/slices/userSlice";
 const UpdateProfile = () => {
   const { user } = useSelector((state) => state.user);
   const { loading, error, isUpdated } = useSelector(
-    (state) => state.updateProfile
+    (state) => state.updateProfile,
   );
   const dispatch = useDispatch();
 
@@ -63,7 +63,9 @@ const UpdateProfile = () => {
         </div>
 
         <div className="flex flex-col space-y-2">
-          <label className="text-gray-700 dark:text-gray-200">Email Address</label>
+          <label className="text-gray-700 dark:text-gray-200">
+            Email Address
+          </label>
           <input
             type="email"
             value={email}
@@ -72,11 +74,15 @@ const UpdateProfile = () => {
             className="px-4 py-2 bg-gray-100 dark:bg-gray-600 border border-gray-300 dark:border-gray-600 
                      rounded-md text-gray-900 dark:text-white cursor-not-allowed opacity-75"
           />
-          <p className="text-sm text-gray-500 dark:text-gray-400">Email cannot be changed</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Email cannot be changed
+          </p>
         </div>
 
         <div className="flex flex-col space-y-2">
-          <label className="text-gray-700 dark:text-gray-200">Phone Number</label>
+          <label className="text-gray-700 dark:text-gray-200">
+            Phone Number
+          </label>
           <input
             type="text"
             pattern="[0-9]*"

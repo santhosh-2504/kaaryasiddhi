@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
@@ -10,7 +10,6 @@ import { FaPhoneFlip } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLock2Fill } from "react-icons/ri";
 import { FaUserFriends } from "react-icons/fa";
-
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -30,7 +29,7 @@ const Register = () => {
     hasSpecial: false,
     hasUpper: false,
     hasLower: false,
-    matches: false
+    matches: false,
   });
 
   const validatePassword = (password, confirmPass) => {
@@ -40,12 +39,12 @@ const Register = () => {
       hasSpecial: /[!@#$%^&*(),.?":{}|<>]/.test(password),
       hasUpper: /[A-Z]/.test(password),
       hasLower: /[a-z]/.test(password),
-      matches: password === confirmPass && password !== ""
+      matches: password === confirmPass && password !== "",
     });
   };
 
   const { loading, isAuthenticated, error, message } = useSelector(
-    (state) => state.user
+    (state) => state.user,
   );
 
   const dispatch = useDispatch();
@@ -57,7 +56,7 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    
+
     // Validation
     if (!name || !email || !phone || !parentPhone || !password) {
       toast.error("Please fill in all fields");
@@ -80,7 +79,9 @@ const Register = () => {
     }
 
     if (phone === parentPhone) {
-      toast.error("Your phone number and parent/guardian phone number cannot be the same");
+      toast.error(
+        "Your phone number and parent/guardian phone number cannot be the same",
+      );
       return;
     }
 
@@ -105,7 +106,7 @@ const Register = () => {
       email: email.trim().toLowerCase(),
       phone: phone,
       parentPhone: parentPhone,
-      password: password
+      password: password,
     };
 
     dispatch(register(registrationData));
@@ -124,7 +125,7 @@ const Register = () => {
 
   const formatPhoneNumber = (value) => {
     // Remove all non-digits
-    const cleaned = value.replace(/\D/g, '');
+    const cleaned = value.replace(/\D/g, "");
     // Limit to 10 digits
     return cleaned.slice(0, 10);
   };
@@ -146,8 +147,14 @@ const Register = () => {
       <p className={passwordValidation.hasSpecial ? "text-green-500" : ""}>
         ✓ At least one special character
       </p>
-      <p className={passwordValidation.matches ? "text-green-500" : "text-red-500"}>
-        {passwordValidation.matches ? "✓ Passwords match" : "✗ Passwords do not match"}
+      <p
+        className={
+          passwordValidation.matches ? "text-green-500" : "text-red-500"
+        }
+      >
+        {passwordValidation.matches
+          ? "✓ Passwords match"
+          : "✗ Passwords do not match"}
       </p>
     </div>
   );
@@ -178,7 +185,9 @@ const Register = () => {
                   />
                 </div>
                 {name && name.length < 3 && (
-                  <p className="text-red-500 text-xs mt-1">Name must be at least 3 characters</p>
+                  <p className="text-red-500 text-xs mt-1">
+                    Name must be at least 3 characters
+                  </p>
                 )}
               </div>
 
@@ -212,19 +221,24 @@ const Register = () => {
                     inputMode="numeric"
                     placeholder="1234567890"
                     value={phone}
-                    onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
+                    onChange={(e) =>
+                      setPhone(formatPhoneNumber(e.target.value))
+                    }
                     className="w-full bg-transparent border-none focus:outline-none text-gray-900 dark:text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                 </div>
                 {phone && phone.length < 10 && (
-                  <p className="text-red-500 text-xs mt-1">Phone number must be 10 digits</p>
+                  <p className="text-red-500 text-xs mt-1">
+                    Phone number must be 10 digits
+                  </p>
                 )}
               </div>
 
               {/* Parent Phone Field */}
               <div>
                 <label className="block text-sm text-gray-700 dark:text-gray-300 mb-1">
-                  Parent/Guardian Phone Number <span className="text-red-500">*</span>
+                  Parent/Guardian Phone Number{" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <div className="flex items-center border rounded-md p-2 bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-700">
                   <FaUserFriends className="text-gray-500 dark:text-gray-400 mr-2" />
@@ -234,18 +248,25 @@ const Register = () => {
                     inputMode="numeric"
                     placeholder="1234567890"
                     value={parentPhone}
-                    onChange={(e) => setParentPhone(formatPhoneNumber(e.target.value))}
+                    onChange={(e) =>
+                      setParentPhone(formatPhoneNumber(e.target.value))
+                    }
                     className="w-full bg-transparent border-none focus:outline-none text-gray-900 dark:text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                 </div>
                 {parentPhone && parentPhone.length < 10 && (
-                  <p className="text-red-500 text-xs mt-1">Parent phone number must be 10 digits</p>
+                  <p className="text-red-500 text-xs mt-1">
+                    Parent phone number must be 10 digits
+                  </p>
                 )}
                 {phone && parentPhone && phone === parentPhone && (
-                  <p className="text-red-500 text-xs mt-1">Parent phone number must be different from your phone number</p>
+                  <p className="text-red-500 text-xs mt-1">
+                    Parent phone number must be different from your phone number
+                  </p>
                 )}
                 <p className="text-gray-500 text-xs mt-1">
-                  This will be used for emergency contact and account verification
+                  This will be used for emergency contact and account
+                  verification
                 </p>
               </div>
 
@@ -314,8 +335,12 @@ const Register = () => {
                       required
                     />
                   </div>
-                  <label htmlFor="age-verify" className="ml-2 text-sm text-gray-600 dark:text-gray-300">
-                    I confirm that I am at least 16 years old <span className="text-red-500">*</span>
+                  <label
+                    htmlFor="age-verify"
+                    className="ml-2 text-sm text-gray-600 dark:text-gray-300"
+                  >
+                    I confirm that I am at least 16 years old{" "}
+                    <span className="text-red-500">*</span>
                   </label>
                 </div>
 
@@ -330,24 +355,42 @@ const Register = () => {
                       required
                     />
                   </div>
-                  <label htmlFor="terms" className="ml-2 text-sm text-gray-600 dark:text-gray-300">
+                  <label
+                    htmlFor="terms"
+                    className="ml-2 text-sm text-gray-600 dark:text-gray-300"
+                  >
                     I agree to the{" "}
-                    <Link href="/terms" className="text-emerald-600 hover:underline dark:text-emerald-500">
+                    <Link
+                      href="/terms"
+                      className="text-emerald-600 hover:underline dark:text-emerald-500"
+                    >
                       Terms of Service
                     </Link>{" "}
                     and{" "}
-                    <Link href="/privacy-policy" className="text-emerald-600 hover:underline dark:text-emerald-500">
+                    <Link
+                      href="/privacy-policy"
+                      className="text-emerald-600 hover:underline dark:text-emerald-500"
+                    >
                       Privacy Policy
-                    </Link> <span className="text-red-500">*</span>
+                    </Link>{" "}
+                    <span className="text-red-500">*</span>
                   </label>
                 </div>
               </div>
 
               <button
                 type="submit"
-                disabled={loading || !Object.values(passwordValidation).every(Boolean) || !isAgeVerified || !isTermsAccepted}
+                disabled={
+                  loading ||
+                  !Object.values(passwordValidation).every(Boolean) ||
+                  !isAgeVerified ||
+                  !isTermsAccepted
+                }
                 className={`w-full py-2 text-white font-medium rounded-md transition ${
-                  loading || !Object.values(passwordValidation).every(Boolean) || !isAgeVerified || !isTermsAccepted
+                  loading ||
+                  !Object.values(passwordValidation).every(Boolean) ||
+                  !isAgeVerified ||
+                  !isTermsAccepted
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-emerald-500 hover:bg-emerald-600"
                 }`}
@@ -357,7 +400,10 @@ const Register = () => {
 
               <p className="text-center text-sm mt-4 text-gray-600 dark:text-gray-400">
                 Already have an account?{" "}
-                <Link href="/login" className="text-emerald-500 dark:text-emerald-400 hover:underline">
+                <Link
+                  href="/login"
+                  className="text-emerald-500 dark:text-emerald-400 hover:underline"
+                >
                   Login Now
                 </Link>
               </p>

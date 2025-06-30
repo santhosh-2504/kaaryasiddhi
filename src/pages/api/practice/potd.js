@@ -11,7 +11,9 @@ if (!process.env.JWT_SECRET_KEY) {
 
 export default catchAsync(async (req, res) => {
   if (req.method !== "GET") {
-    return res.status(405).json({ success: false, message: "Method not allowed" });
+    return res
+      .status(405)
+      .json({ success: false, message: "Method not allowed" });
   }
 
   await dbConnect();
@@ -19,7 +21,12 @@ export default catchAsync(async (req, res) => {
   // 1. Verify token
   const token = req.cookies.token;
   if (!token) {
-    return res.status(401).json({ success: false, message: "Please login to access this resource" });
+    return res
+      .status(401)
+      .json({
+        success: false,
+        message: "Please login to access this resource",
+      });
   }
 
   let decoded;
@@ -44,7 +51,12 @@ export default catchAsync(async (req, res) => {
   const potd = await Potd.findOne({ level, date: today, isActive: true });
 
   if (!potd) {
-    return res.status(404).json({ success: false, message: `No PotD found for Level ${level} today` });
+    return res
+      .status(404)
+      .json({
+        success: false,
+        message: `No PotD found for Level ${level} today`,
+      });
   }
 
   res.status(200).json({ success: true, data: potd });

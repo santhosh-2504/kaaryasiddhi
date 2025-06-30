@@ -1,26 +1,31 @@
-import { ExternalLink, CheckCircle, Clock, XCircle, Send } from 'lucide-react';
+import { ExternalLink, CheckCircle, Clock, XCircle, Send } from "lucide-react";
 
 // SubmissionStatus Component
-const SubmissionStatus = ({ submission, isAuthenticated, submissionLoading, onShowSubmissionForm }) => {
+const SubmissionStatus = ({
+  submission,
+  isAuthenticated,
+  submissionLoading,
+  onShowSubmissionForm,
+}) => {
   const getStatusColor = (status) => {
     switch (status) {
-      case 'approved':
-        return 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30';
-      case 'rejected':
-        return 'text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/30';
-      case 'pending':
+      case "approved":
+        return "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30";
+      case "rejected":
+        return "text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/30";
+      case "pending":
       default:
-        return 'text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-900/30';
+        return "text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-900/30";
     }
   };
 
   const getStatusIcon = (status) => {
     switch (status) {
-      case 'approved':
+      case "approved":
         return <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />;
-      case 'rejected':
+      case "rejected":
         return <XCircle className="w-3 h-3 sm:w-4 sm:h-4" />;
-      case 'pending':
+      case "pending":
       default:
         return <Clock className="w-3 h-3 sm:w-4 sm:h-4" />;
     }
@@ -29,10 +34,13 @@ const SubmissionStatus = ({ submission, isAuthenticated, submissionLoading, onSh
   if (submission) {
     return (
       <div className="flex items-center gap-1.5 sm:gap-2">
-        <span className={`inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(submission.status)}`}>
+        <span
+          className={`inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(submission.status)}`}
+        >
           <span className="mr-1">{getStatusIcon(submission.status)}</span>
           <span className="hidden xs:inline sm:inline">
-            {submission.status.charAt(0).toUpperCase() + submission.status.slice(1)}
+            {submission.status.charAt(0).toUpperCase() +
+              submission.status.slice(1)}
           </span>
         </span>
         {submission.submissionLink && (

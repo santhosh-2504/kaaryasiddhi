@@ -6,31 +6,33 @@ export const fetchDashboardData = createAsyncThunk(
   "dashboard/fetchData",
   async (filters = {}, thunkAPI) => {
     try {
-      const { days = 7, search = '', level = null } = filters;
-      
+      const { days = 7, search = "", level = null } = filters;
+
       // Build query parameters
       const params = new URLSearchParams();
-      params.append('days', days.toString());
-      
+      params.append("days", days.toString());
+
       if (search && search.trim()) {
-        params.append('search', search.trim());
+        params.append("search", search.trim());
       }
-      
-      if (level !== null && level !== undefined && level !== '') {
-        params.append('level', level.toString());
+
+      if (level !== null && level !== undefined && level !== "") {
+        params.append("level", level.toString());
       }
-      
-      const response = await axios.get(`/api/auth/dashboard?${params.toString()}`);
+
+      const response = await axios.get(
+        `/api/auth/dashboard?${params.toString()}`,
+      );
       return {
         data: response.data.data,
-        metadata: response.data.metadata
+        metadata: response.data.metadata,
       };
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Something went wrong"
+        error.response?.data?.message || "Something went wrong",
       );
     }
-  }
+  },
 );
 
 const dashboardSlice = createSlice({
@@ -43,9 +45,9 @@ const dashboardSlice = createSlice({
     // Store current filter state
     filters: {
       days: 7,
-      search: '',
-      level: null
-    }
+      search: "",
+      level: null,
+    },
   },
   reducers: {
     clearDashboard: (state) => {
@@ -60,10 +62,10 @@ const dashboardSlice = createSlice({
     clearFilters: (state) => {
       state.filters = {
         days: 7,
-        search: '',
-        level: null
+        search: "",
+        level: null,
       };
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -83,5 +85,6 @@ const dashboardSlice = createSlice({
   },
 });
 
-export const { clearDashboard, setFilters, clearFilters } = dashboardSlice.actions;
+export const { clearDashboard, setFilters, clearFilters } =
+  dashboardSlice.actions;
 export default dashboardSlice.reducer;

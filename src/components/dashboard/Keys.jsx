@@ -81,7 +81,6 @@
 
 //   const deleteKey = (index) => {
 //     const updated = apiKeys.filter((_, i) => i !== index);
-    
 
 //     // Save updated list
 //     saveKeys(updated);
@@ -108,14 +107,14 @@
 //       <h3 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">
 //         RapidAPI Key Manager
 //       </h3>
-      
+
 //       <div className="space-y-6">
 //         {/* Add New Key Section */}
 //         <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-md">
 //           <h4 className="text-lg font-medium mb-4 text-gray-900 dark:text-white">
 //             Add New API Key
 //           </h4>
-          
+
 //           <div className="space-y-4">
 //             <div className="flex flex-col space-y-2">
 //               <label className="text-gray-700 dark:text-gray-200">Label</label>
@@ -124,7 +123,7 @@
 //                 value={label}
 //                 onChange={(e) => setLabel(e.target.value)}
 //                 placeholder="e.g. Main, Backup, Testing..."
-//                 className="px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 
+//                 className="px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500
 //                          rounded-md text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400
 //                          focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
 //               />
@@ -137,7 +136,7 @@
 //                 value={currentKey}
 //                 onChange={(e) => setCurrentKey(e.target.value)}
 //                 placeholder="Enter your RapidAPI Key"
-//                 className="px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 
+//                 className="px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500
 //                          rounded-md text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400
 //                          focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
 //               />
@@ -145,7 +144,7 @@
 
 //             <button
 //               onClick={testApiKey}
-//               className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-6 py-2 
+//               className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-6 py-2
 //                        rounded-md transition-colors duration-200 disabled:cursor-not-allowed"
 //               disabled={!currentKey || status === "testing"}
 //             >
@@ -154,8 +153,8 @@
 
 //             {message && (
 //               <div className={`p-3 rounded-md text-sm ${
-//                 status === "success" 
-//                   ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200" 
+//                 status === "success"
+//                   ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200"
 //                   : status === "error"
 //                   ? "bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200"
 //                   : "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200"
@@ -171,7 +170,7 @@
 //           <h4 className="text-lg font-medium mb-4 text-gray-900 dark:text-white">
 //             Saved API Keys
 //           </h4>
-          
+
 //           {apiKeys.length === 0 ? (
 //             <div className="text-center py-8 bg-gray-50 dark:bg-gray-700 rounded-md">
 //               <p className="text-gray-500 dark:text-gray-400">No API keys saved yet.</p>
@@ -208,8 +207,8 @@
 //                     const isSelected = index === selectedIndex;
 
 //                     return (
-//                       <tr 
-//                         key={index} 
+//                       <tr
+//                         key={index}
 //                         className={`hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors ${
 //                           isSelected ? 'bg-blue-50 dark:bg-blue-900/20' : ''
 //                         }`}
@@ -220,7 +219,7 @@
 //                               {item.label}
 //                             </span>
 //                             {isSelected && (
-//                               <span className="inline-flex items-center px-2 py-1 rounded-full text-xs 
+//                               <span className="inline-flex items-center px-2 py-1 rounded-full text-xs
 //                                            bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
 //                                 <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-1"></span>
 //                                 Active
@@ -229,7 +228,7 @@
 //                           </div>
 //                         </td>
 //                         <td className="px-4 py-3">
-//                           <code className="text-sm bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded 
+//                           <code className="text-sm bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded
 //                                          text-gray-700 dark:text-gray-300">
 //                             {item.key.slice(0, 8)}...{item.key.slice(-6)}
 //                           </code>
@@ -241,12 +240,12 @@
 //                         </td>
 //                         <td className="px-4 py-3">
 //                           {isSelected ? (
-//                             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs 
+//                             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs
 //                                          bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
 //                               Selected
 //                             </span>
 //                           ) : (
-//                             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs 
+//                             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs
 //                                          bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
 //                               Available
 //                             </span>
@@ -257,7 +256,7 @@
 //                             {!isSelected && (
 //                               <button
 //                                 onClick={() => setActiveKey(index)}
-//                                 className="text-blue-600 dark:text-blue-400 hover:text-blue-800 
+//                                 className="text-blue-600 dark:text-blue-400 hover:text-blue-800
 //                                          dark:hover:text-blue-300 text-sm font-medium transition-colors"
 //                               >
 //                                 Select
@@ -265,7 +264,7 @@
 //                             )}
 //                             <button
 //                               onClick={() => deleteKey(index)}
-//                               className="text-red-600 dark:text-red-400 hover:text-red-800 
+//                               className="text-red-600 dark:text-red-400 hover:text-red-800
 //                                        dark:hover:text-red-300 text-sm font-medium transition-colors"
 //                             >
 //                               Delete
@@ -286,13 +285,13 @@
 // }
 
 import { useEffect, useState } from "react";
-import { 
-  getRapidApiKeys, 
-  saveRapidApiKeys, 
-  getSelectedKeyIndex, 
+import {
+  getRapidApiKeys,
+  saveRapidApiKeys,
+  getSelectedKeyIndex,
   setSelectedKeyIndex,
   migrateOldKeys,
-  isClientSide 
+  isClientSide,
 } from "@/lib/keys";
 
 export default function Keys() {
@@ -311,17 +310,21 @@ export default function Keys() {
     try {
       // Migrate old keys if necessary
       migrateOldKeys();
-      
+
       // Load keys and selected index
       const stored = getRapidApiKeys();
       const selected = getSelectedKeyIndex();
-      
+
       // Validate selected index
       let validSelectedIndex = selected;
       if (stored.length === 0) {
         validSelectedIndex = null;
         setSelectedKeyIndex(null);
-      } else if (selected === null || selected >= stored.length || selected < 0) {
+      } else if (
+        selected === null ||
+        selected >= stored.length ||
+        selected < 0
+      ) {
         validSelectedIndex = null;
         setSelectedKeyIndex(null);
       }
@@ -380,7 +383,7 @@ export default function Keys() {
           "X-RapidAPI-Key": currentKey.trim(),
           "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
         },
-        signal: controller.signal
+        signal: controller.signal,
       });
 
       clearTimeout(timeoutId);
@@ -407,7 +410,9 @@ export default function Keys() {
       };
 
       // Check if key already exists
-      const existingKeyIndex = apiKeys.findIndex(k => k.key === currentKey.trim());
+      const existingKeyIndex = apiKeys.findIndex(
+        (k) => k.key === currentKey.trim(),
+      );
       if (existingKeyIndex !== -1) {
         setMessage("❌ This API key already exists.");
         setStatus("error");
@@ -428,11 +433,12 @@ export default function Keys() {
         setMessage("");
         setStatus(null);
       }, 3000);
-
     } catch (err) {
-      if (err.name === 'AbortError') {
+      if (err.name === "AbortError") {
         setStatus("error");
-        setMessage("❌ Request timeout. Please check your internet connection.");
+        setMessage(
+          "❌ Request timeout. Please check your internet connection.",
+        );
       } else {
         setStatus("error");
         setMessage(`❌ ${err.message}`);
@@ -474,7 +480,9 @@ export default function Keys() {
       <div className="max-w-4xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <div className="flex items-center justify-center py-8">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-          <span className="ml-2 text-gray-600 dark:text-gray-300">Loading...</span>
+          <span className="ml-2 text-gray-600 dark:text-gray-300">
+            Loading...
+          </span>
         </div>
       </div>
     );
@@ -485,14 +493,22 @@ export default function Keys() {
       <h3 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">
         RapidAPI Key Manager
       </h3>
-      
+
       <div className="space-y-6">
         {/* Info Banner */}
         <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
           <div className="flex items-start">
             <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+              <svg
+                className="h-5 w-5 text-blue-400"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clipRule="evenodd"
+                />
               </svg>
             </div>
             <div className="ml-3">
@@ -500,11 +516,12 @@ export default function Keys() {
                 RapidAPI Setup Required
               </h4>
               <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
-                To execute code in languages other than JavaScript, you need a RapidAPI key for Judge0. 
-                <a 
-                  href="https://rapidapi.com/judge0-official/api/judge0-ce" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                To execute code in languages other than JavaScript, you need a
+                RapidAPI key for Judge0.
+                <a
+                  href="https://rapidapi.com/judge0-official/api/judge0-ce"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="underline hover:no-underline ml-1"
                 >
                   Get your free API key here
@@ -519,7 +536,7 @@ export default function Keys() {
           <h4 className="text-lg font-medium mb-4 text-gray-900 dark:text-white">
             Add New API Key
           </h4>
-          
+
           <div className="space-y-4">
             <div className="flex flex-col space-y-2">
               <label className="text-gray-700 dark:text-gray-200">Label</label>
@@ -536,7 +553,9 @@ export default function Keys() {
             </div>
 
             <div className="flex flex-col space-y-2">
-              <label className="text-gray-700 dark:text-gray-200">API Key</label>
+              <label className="text-gray-700 dark:text-gray-200">
+                API Key
+              </label>
               <input
                 type="text"
                 value={currentKey}
@@ -567,20 +586,24 @@ export default function Keys() {
 
             {/* Status Message */}
             {message && (
-              <div className={`p-3 rounded-md ${
-                status === "success" 
-                  ? "bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800" 
-                  : status === "error" 
-                  ? "bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800"
-                  : "bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800"
-              }`}>
-                <p className={`text-sm ${
-                  status === "success" 
-                    ? "text-green-800 dark:text-green-200"
+              <div
+                className={`p-3 rounded-md ${
+                  status === "success"
+                    ? "bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800"
                     : status === "error"
-                    ? "text-red-800 dark:text-red-200"
-                    : "text-yellow-800 dark:text-yellow-200"
-                }`}>
+                      ? "bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800"
+                      : "bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800"
+                }`}
+              >
+                <p
+                  className={`text-sm ${
+                    status === "success"
+                      ? "text-green-800 dark:text-green-200"
+                      : status === "error"
+                        ? "text-red-800 dark:text-red-200"
+                        : "text-yellow-800 dark:text-yellow-200"
+                  }`}
+                >
                   {message}
                 </p>
               </div>
@@ -593,14 +616,26 @@ export default function Keys() {
           <h4 className="text-lg font-medium mb-4 text-gray-900 dark:text-white">
             Saved API Keys ({apiKeys.length})
           </h4>
-          
+
           {apiKeys.length === 0 ? (
             <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-              <svg className="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m0 0a2 2 0 012 2m-2-2v6m0 0v-2a2 2 0 00-2-2H9a2 2 0 00-2 2v2m0 0v-2a2 2 0 012-2m0 0V9a2 2 0 012-2m0 0V7a2 2 0 012-2" />
+              <svg
+                className="mx-auto h-12 w-12 text-gray-400 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 7a2 2 0 012 2m0 0a2 2 0 012 2m-2-2v6m0 0v-2a2 2 0 00-2-2H9a2 2 0 00-2 2v2m0 0v-2a2 2 0 012-2m0 0V9a2 2 0 012-2m0 0V7a2 2 0 012-2"
+                />
               </svg>
               <p>No API keys saved yet</p>
-              <p className="text-sm mt-1">Add your first RapidAPI key above to get started</p>
+              <p className="text-sm mt-1">
+                Add your first RapidAPI key above to get started
+              </p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -634,7 +669,7 @@ export default function Keys() {
                       </div>
                       <div className="mt-2 flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
                         <span>Used today: {keyObj.usedToday || 0}</span>
-                        <span>Last used: {keyObj.lastUsed || 'Never'}</span>
+                        <span>Last used: {keyObj.lastUsed || "Never"}</span>
                         {index === selectedIndex && (
                           <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
                             Active

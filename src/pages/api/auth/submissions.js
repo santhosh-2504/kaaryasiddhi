@@ -21,14 +21,13 @@ export default catchAsync(async (req, res) => {
     const submissions = await Submission.find({
       userId: req.user._id,
     })
-    .populate('taskId', 'title type optional levelNumber status')
-    .sort({ submittedAt: -1 });
+      .populate("taskId", "title type optional levelNumber status")
+      .sort({ submittedAt: -1 });
 
     res.status(200).json({
       success: true,
       data: submissions,
     });
-
   } catch (error) {
     console.error("Fetch submissions error:", error);
     return res.status(500).json({

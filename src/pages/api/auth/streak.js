@@ -16,7 +16,9 @@ const getStartOfDay = (date = new Date()) => {
 
 export default catchAsync(async (req, res) => {
   if (req.method !== "POST") {
-    return res.status(405).json({ success: false, message: "Method not allowed" });
+    return res
+      .status(405)
+      .json({ success: false, message: "Method not allowed" });
   }
 
   await dbConnect();
@@ -24,7 +26,9 @@ export default catchAsync(async (req, res) => {
   const token = req.cookies.token;
 
   if (!token) {
-    return res.status(401).json({ success: false, message: "Please login to continue" });
+    return res
+      .status(401)
+      .json({ success: false, message: "Please login to continue" });
   }
 
   let decoded;
@@ -33,7 +37,9 @@ export default catchAsync(async (req, res) => {
       algorithms: ["HS256"],
     });
   } catch (error) {
-    return res.status(401).json({ success: false, message: "Invalid or expired token" });
+    return res
+      .status(401)
+      .json({ success: false, message: "Invalid or expired token" });
   }
 
   const user = await User.findById(decoded._id);

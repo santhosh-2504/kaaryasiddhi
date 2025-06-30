@@ -46,7 +46,7 @@
 //         entries.forEach((entry) => {
 //           if (entry.target.id === 'faqs') {
 //             setIsInFAQSection(entry.isIntersecting);
-            
+
 //             if (entry.isIntersecting) {
 //               // Auto-open when entering FAQ section (only if user hasn't manually closed it)
 //               if (!isOpen && !hasUserInteracted && !userManuallyClosed) {
@@ -99,11 +99,11 @@
 
 //   const handleSend = () => {
 //     if (!input.trim()) return;
-    
+
 //     // Mark user as interacted when they send a message
 //     setHasUserInteracted(true);
 //     setAutoOpenedByFAQ(false); // No longer auto-opened since user interacted
-    
+
 //     dispatch(sendMessage(input));
 //     setInput("");
 //   };
@@ -126,7 +126,7 @@
 //   const handleCloseModal = () => {
 //     setIsOpen(false);
 //     setUserManuallyClosed(true); // Mark that user manually closed the modal
-    
+
 //     // Reset interaction state when manually closed (only if not in FAQ section)
 //     if (!isInFAQSection) {
 //       setHasUserInteracted(false);
@@ -167,10 +167,10 @@
 //           aria-label="Chat with Kaarya AI"
 //         >
 //           <MessageCircle size={24} className="group-hover:animate-pulse" />
-          
+
 //           {/* Notification dot */}
 //           <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-          
+
 //           {/* Ripple effect */}
 //           <div className="absolute inset-0 rounded-full bg-emerald-400/30 scale-0 group-hover:scale-150 transition-transform duration-300"></div>
 //         </button>
@@ -180,13 +180,13 @@
 //       {isOpen && (
 //         <>
 //           {/* Backdrop */}
-//           <div 
+//           <div
 //             className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
 //             onClick={handleCloseModal}
 //           />
-          
+
 //           <div className="fixed bottom-4 right-4 md:bottom-20 md:right-6 w-[calc(100vw-2rem)] md:w-[420px] h-[calc(100vh-2rem)] md:h-[600px] z-50 shadow-2xl rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden backdrop-blur-lg animate-slideInUp">
-            
+
 //             {/* Header */}
 //             <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-emerald-50 to-slate-50 dark:from-slate-800 dark:to-slate-900 border-b border-slate-200 dark:border-slate-700">
 //               <div className="flex items-center gap-3">
@@ -201,8 +201,8 @@
 //                   </p>
 //                 </div>
 //               </div>
-//               <button 
-//                 onClick={handleCloseModal} 
+//               <button
+//                 onClick={handleCloseModal}
 //                 className="text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 p-2 rounded-full transition-all duration-200"
 //               >
 //                 <X size={18} />
@@ -212,7 +212,7 @@
 //             {/* Messages Container */}
 //             <div className="flex-1 overflow-y-auto bg-gradient-to-b from-slate-50/50 to-white dark:from-slate-900/50 dark:to-slate-900">
 //               <div className="px-4 py-4 space-y-4">
-                
+
 //                 {/* Welcome Message */}
 //                 {messages.length === 0 && (
 //                   <div className="text-center py-8 animate-fadeInUp">
@@ -230,15 +230,15 @@
 
 //                 {/* Messages */}
 //                 {messages.map((msg, i) => (
-//                   <div 
-//                     key={i} 
+//                   <div
+//                     key={i}
 //                     className={`flex items-start gap-3 animate-fadeInUp ${msg.role === "user" ? "flex-row-reverse" : ""}`}
 //                     style={{ animationDelay: `${i * 0.1}s` }}
 //                   >
 //                     {/* Avatar */}
 //                     <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-//                       msg.role === "user" 
-//                         ? "bg-gradient-to-br from-blue-500 to-blue-600" 
+//                       msg.role === "user"
+//                         ? "bg-gradient-to-br from-blue-500 to-blue-600"
 //                         : "bg-gradient-to-br from-emerald-500 to-emerald-600"
 //                     }`}>
 //                       {msg.role === "user" ? (
@@ -326,7 +326,7 @@
 //                     </div>
 //                   </div>
 //                 )}
-                
+
 //                 <div ref={bottomRef} />
 //               </div>
 //             </div>
@@ -342,7 +342,7 @@
 //                     placeholder="Type your message..."
 //                     rows={1}
 //                     className="w-full px-4 py-3 pr-12 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 resize-none transition-all duration-200"
-//                     style={{ 
+//                     style={{
 //                       minHeight: '48px',
 //                       maxHeight: '120px',
 //                       height: 'auto'
@@ -358,7 +358,7 @@
 //                   <Send size={18} />
 //                 </button>
 //               </div>
-              
+
 //               {/* Quick Actions */}
 //               <div className="flex gap-2 mt-3 flex-wrap">
 //                 <button
@@ -397,7 +397,7 @@
 //             transform: translateY(0);
 //           }
 //         }
-        
+
 //         @keyframes slideInUp {
 //           from {
 //             opacity: 0;
@@ -408,11 +408,11 @@
 //             transform: translateY(0) scale(1);
 //           }
 //         }
-        
+
 //         .animate-fadeInUp {
 //           animation: fadeInUp 0.6s ease-out forwards;
 //         }
-        
+
 //         .animate-slideInUp {
 //           animation: slideInUp 0.4s ease-out forwards;
 //         }
@@ -449,7 +449,7 @@ export default function AIModal() {
     "Ask me anything!",
     "I'm here to help!",
     "Questions? Fire away!",
-    "Confused? Let's chat!"
+    "Confused? Let's chat!",
   ];
 
   // Rotate inviting messages every 3 seconds
@@ -467,9 +467,9 @@ export default function AIModal() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.target.id === 'faqs') {
+          if (entry.target.id === "faqs") {
             setIsInFAQSection(entry.isIntersecting);
-            
+
             if (entry.isIntersecting) {
               // Auto-open when entering FAQ section (only if user hasn't manually closed it)
               if (!isOpen && !hasUserInteracted && !userManuallyClosed) {
@@ -478,7 +478,12 @@ export default function AIModal() {
               }
             } else {
               // Auto-close when leaving FAQ section (only if no user interaction and wasn't manually closed)
-              if (isOpen && autoOpenedByFAQ && !hasUserInteracted && !userManuallyClosed) {
+              if (
+                isOpen &&
+                autoOpenedByFAQ &&
+                !hasUserInteracted &&
+                !userManuallyClosed
+              ) {
                 setIsOpen(false);
                 setAutoOpenedByFAQ(false);
               }
@@ -490,10 +495,10 @@ export default function AIModal() {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
-    const faqSection = document.getElementById('faqs');
+    const faqSection = document.getElementById("faqs");
     if (faqSection) {
       observer.observe(faqSection);
     }
@@ -522,11 +527,11 @@ export default function AIModal() {
 
   const handleSend = () => {
     if (!input.trim()) return;
-    
+
     // Mark user as interacted when they send a message
     setHasUserInteracted(true);
     setAutoOpenedByFAQ(false); // No longer auto-opened since user interacted
-    
+
     dispatch(sendMessage(input));
     setInput("");
   };
@@ -549,7 +554,7 @@ export default function AIModal() {
   const handleCloseModal = () => {
     setIsOpen(false);
     setUserManuallyClosed(true); // Mark that user manually closed the modal
-    
+
     // Reset interaction state when manually closed (only if not in FAQ section)
     if (!isInFAQSection) {
       setHasUserInteracted(false);
@@ -590,10 +595,10 @@ export default function AIModal() {
           aria-label="Chat with Kaarya AI"
         >
           <MessageCircle size={24} className="group-hover:animate-pulse" />
-          
+
           {/* Notification dot */}
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-          
+
           {/* Ripple effect */}
           <div className="absolute inset-0 rounded-full bg-emerald-400/30 scale-0 group-hover:scale-150 transition-transform duration-300"></div>
         </button>
@@ -603,21 +608,20 @@ export default function AIModal() {
       {isOpen && (
         <>
           {/* Backdrop - only for mobile */}
-          <div 
+          <div
             className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 sm:hidden"
             onClick={handleCloseModal}
           />
-          
+
           {/* Modal Container - Responsive sizing */}
           <div
-  className={
-    "fixed bottom-4 right-4 z-50 shadow-2xl rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden backdrop-blur-lg animate-slideInUp " +
-    "w-[calc(100vw-2rem)] h-[480px] max-w-[360px] " +
-    "sm:w-[380px] sm:h-[550px] sm:bottom-20 sm:right-6 " +
-    "md:w-[420px] md:h-[600px]"
-  }
->
-            
+            className={
+              "fixed bottom-4 right-4 z-50 shadow-2xl rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden backdrop-blur-lg animate-slideInUp " +
+              "w-[calc(100vw-2rem)] h-[480px] max-w-[360px] " +
+              "sm:w-[380px] sm:h-[550px] sm:bottom-20 sm:right-6 " +
+              "md:w-[420px] md:h-[600px]"
+            }
+          >
             {/* Header */}
             <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-emerald-50 to-slate-50 dark:from-slate-800 dark:to-slate-900 border-b border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-3">
@@ -625,15 +629,17 @@ export default function AIModal() {
                   <Bot size={16} className="sm:w-5 sm:h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm sm:text-base text-slate-800 dark:text-white">Kaarya AI (Beta)</h3>
+                  <h3 className="font-semibold text-sm sm:text-base text-slate-800 dark:text-white">
+                    Kaarya AI (Beta)
+                  </h3>
                   <p className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                     <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
                     Online
                   </p>
                 </div>
               </div>
-              <button 
-                onClick={handleCloseModal} 
+              <button
+                onClick={handleCloseModal}
                 className="text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 p-1.5 sm:p-2 rounded-full transition-all duration-200"
               >
                 <X size={16} className="sm:w-[18px] sm:h-[18px]" />
@@ -643,35 +649,40 @@ export default function AIModal() {
             {/* Messages Container */}
             <div className="flex-1 overflow-y-auto bg-gradient-to-b from-slate-50/50 to-white dark:from-slate-900/50 dark:to-slate-900">
               <div className="px-3 sm:px-4 py-3 sm:py-4 space-y-3 sm:space-y-4">
-                
                 {/* Welcome Message */}
                 {messages.length === 0 && (
                   <div className="text-center py-6 sm:py-8 animate-fadeInUp">
                     <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg animate-bounce">
-                      <Sparkles size={20} className="sm:w-6 sm:h-6 text-white" />
+                      <Sparkles
+                        size={20}
+                        className="sm:w-6 sm:h-6 text-white"
+                      />
                     </div>
                     <h4 className="text-base sm:text-lg font-semibold text-slate-800 dark:text-white mb-2">
                       Welcome to Kaarya AI! 👋
                     </h4>
                     <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm max-w-xs mx-auto">
-                      I'm here to help you with your learning journey. Ask me anything about KaaryaSiddhi!
+                      I'm here to help you with your learning journey. Ask me
+                      anything about KaaryaSiddhi!
                     </p>
                   </div>
                 )}
 
                 {/* Messages */}
                 {messages.map((msg, i) => (
-                  <div 
-                    key={i} 
+                  <div
+                    key={i}
                     className={`flex items-start gap-2 sm:gap-3 animate-fadeInUp ${msg.role === "user" ? "flex-row-reverse" : ""}`}
                     style={{ animationDelay: `${i * 0.1}s` }}
                   >
                     {/* Avatar */}
-                    <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      msg.role === "user" 
-                        ? "bg-gradient-to-br from-blue-500 to-blue-600" 
-                        : "bg-gradient-to-br from-emerald-500 to-emerald-600"
-                    }`}>
+                    <div
+                      className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                        msg.role === "user"
+                          ? "bg-gradient-to-br from-blue-500 to-blue-600"
+                          : "bg-gradient-to-br from-emerald-500 to-emerald-600"
+                      }`}
+                    >
                       {msg.role === "user" ? (
                         <User size={14} className="sm:w-4 sm:h-4 text-white" />
                       ) : (
@@ -680,12 +691,16 @@ export default function AIModal() {
                     </div>
 
                     {/* Message Bubble */}
-                    <div className={`max-w-[85%] ${msg.role === "user" ? "items-end" : "items-start"} flex flex-col`}>
-                      <div className={`rounded-2xl px-3 sm:px-4 py-2 sm:py-3 shadow-sm transition-all duration-300 hover:shadow-md ${
-                        msg.role === "user"
-                          ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-tr-md"
-                          : "bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-tl-md"
-                      }`}>
+                    <div
+                      className={`max-w-[85%] ${msg.role === "user" ? "items-end" : "items-start"} flex flex-col`}
+                    >
+                      <div
+                        className={`rounded-2xl px-3 sm:px-4 py-2 sm:py-3 shadow-sm transition-all duration-300 hover:shadow-md ${
+                          msg.role === "user"
+                            ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-tr-md"
+                            : "bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-tl-md"
+                        }`}
+                      >
                         {msg.role === "assistant" ? (
                           <ReactMarkdown
                             components={{
@@ -729,11 +744,16 @@ export default function AIModal() {
                             {msg.content}
                           </ReactMarkdown>
                         ) : (
-                          <span className="text-xs sm:text-sm leading-relaxed">{msg.content}</span>
+                          <span className="text-xs sm:text-sm leading-relaxed">
+                            {msg.content}
+                          </span>
                         )}
                       </div>
                       <span className="text-xs text-slate-400 mt-1 px-2">
-                        {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        {new Date().toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
                       </span>
                     </div>
                   </div>
@@ -752,12 +772,14 @@ export default function AIModal() {
                           <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
                           <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce"></div>
                         </div>
-                        <span className="text-xs text-slate-500 dark:text-slate-400">Kaarya AI is thinking...</span>
+                        <span className="text-xs text-slate-500 dark:text-slate-400">
+                          Kaarya AI is thinking...
+                        </span>
                       </div>
                     </div>
                   </div>
                 )}
-                
+
                 <div ref={bottomRef} />
               </div>
             </div>
@@ -773,10 +795,10 @@ export default function AIModal() {
                     placeholder="Type your message..."
                     rows={1}
                     className="w-full px-3 sm:px-4 py-2 sm:py-3 pr-10 sm:pr-12 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 resize-none transition-all duration-200 text-sm sm:text-base"
-                    style={{ 
-                      minHeight: '40px',
-                      maxHeight: '100px',
-                      height: 'auto'
+                    style={{
+                      minHeight: "40px",
+                      maxHeight: "100px",
+                      height: "auto",
                     }}
                   />
                 </div>
@@ -789,7 +811,7 @@ export default function AIModal() {
                   <Send size={16} className="sm:w-[18px] sm:h-[18px]" />
                 </button>
               </div>
-              
+
               {/* Quick Actions */}
               <div className="flex gap-1.5 sm:gap-2 mt-2 sm:mt-3 flex-wrap">
                 <button
@@ -799,7 +821,9 @@ export default function AIModal() {
                   What is KaaryaSiddhi?
                 </button>
                 <button
-                  onClick={() => handleQuickAction("How does the mentorship work?")}
+                  onClick={() =>
+                    handleQuickAction("How does the mentorship work?")
+                  }
                   className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-all duration-200 transform hover:scale-105"
                 >
                   How it works?
@@ -828,7 +852,7 @@ export default function AIModal() {
             transform: translateY(0);
           }
         }
-        
+
         @keyframes slideInUp {
           from {
             opacity: 0;
@@ -839,11 +863,11 @@ export default function AIModal() {
             transform: translateY(0) scale(1);
           }
         }
-        
+
         .animate-fadeInUp {
           animation: fadeInUp 0.6s ease-out forwards;
         }
-        
+
         .animate-slideInUp {
           animation: slideInUp 0.4s ease-out forwards;
         }

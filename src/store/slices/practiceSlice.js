@@ -9,9 +9,11 @@ export const fetchPotd = createAsyncThunk(
       // Fix: API returns { success: true, data: potd }
       return response.data.data; // Changed from response.data.potd
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || "Failed to fetch POTD");
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch POTD",
+      );
     }
-  }
+  },
 );
 
 const practiceSlice = createSlice({

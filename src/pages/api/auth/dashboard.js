@@ -11,7 +11,9 @@ if (!process.env.JWT_SECRET_KEY) {
 
 export default catchAsync(async (req, res) => {
   if (req.method !== "GET") {
-    return res.status(405).json({ success: false, message: "Method not allowed" });
+    return res
+      .status(405)
+      .json({ success: false, message: "Method not allowed" });
   }
 
   await dbConnect();
@@ -37,7 +39,7 @@ export default catchAsync(async (req, res) => {
 
   // Extract query parameters with defaults
   const days = parseInt(req.query.days) || 7;
-  const searchName = req.query.search ? req.query.search.trim() : '';
+  const searchName = req.query.search ? req.query.search.trim() : "";
   const levelFilter = req.query.level ? parseInt(req.query.level) : null;
 
   // Validate days parameter (only allow specific values)
@@ -48,27 +50,29 @@ export default catchAsync(async (req, res) => {
 
   // Build user query with search and level filters
   let userQuery = {};
-  
+
   // Add name search filter (case-insensitive)
   if (searchName) {
-    userQuery.name = { $regex: searchName, $options: 'i' };
+    userQuery.name = { $regex: searchName, $options: "i" };
   }
-  
+
   // Add level filter
   if (levelFilter !== null && levelFilter >= 0) {
     userQuery.currentLevel = levelFilter;
   }
 
   // Fetch filtered users
-  const users = await User.find(userQuery).select("name currentLevel streak isStreakFrozen");
+  const users = await User.find(userQuery).select(
+    "name currentLevel streak isStreakFrozen",
+  );
 
   // Get user IDs for submission filtering
-  const userIds = users.map(u => u._id);
+  const userIds = users.map((u) => u._id);
 
   // Fetch submissions in last X days for filtered users only
-  const recentSubs = await Submission.find({ 
+  const recentSubs = await Submission.find({
     userId: { $in: userIds },
-    submittedAt: { $gte: sinceDate } 
+    submittedAt: { $gte: sinceDate },
   })
     .populate("taskId", "type") // Get task type for filtering
     .select("userId taskId score submittedAt");
@@ -90,7 +94,7 @@ export default catchAsync(async (req, res) => {
         githubTotalScore: 0,
         linkedinScoreCount: 0,
         githubScoreCount: 0,
-        lastSubmission: sub.submittedAt
+        lastSubmission: sub.submittedAt,
       };
     }
 
@@ -116,7 +120,7 @@ export default catchAsync(async (req, res) => {
   }
 
   // Final response array
-  const dashboard = users.map(u => {
+  const dashboard = users.map((u) => {
     const uid = u._id.toString();
     const m = userMetrics[uid] || {};
 
@@ -128,9 +132,13 @@ export default catchAsync(async (req, res) => {
       isStreakFrozen: u.isStreakFrozen,
       linkedinTasksCount: m.linkedinCount || 0,
       githubTasksCount: m.githubCount || 0,
-      avgLinkedinScore: m.linkedinScoreCount ? (m.linkedinTotalScore / m.linkedinScoreCount).toFixed(2) : null,
-      avgGithubScore: m.githubScoreCount ? (m.githubTotalScore / m.githubScoreCount).toFixed(2) : null,
-      lastSubmission: m.lastSubmission || null
+      avgLinkedinScore: m.linkedinScoreCount
+        ? (m.linkedinTotalScore / m.linkedinScoreCount).toFixed(2)
+        : null,
+      avgGithubScore: m.githubScoreCount
+        ? (m.githubTotalScore / m.githubScoreCount).toFixed(2)
+        : null,
+      lastSubmission: m.lastSubmission || null,
     };
   });
 
@@ -140,16 +148,16 @@ export default catchAsync(async (req, res) => {
     appliedFilters: {
       searchName: searchName || null,
       levelFilter: levelFilter !== null ? levelFilter : null,
-      daysBack: validDays
+      daysBack: validDays,
     },
     availableFilters: {
-      allowedDays: allowedDays
-    }
+      allowedDays: allowedDays,
+    },
   };
 
   res.status(200).json({
     success: true,
     data: dashboard,
-    metadata
+    metadata,
   });
 });

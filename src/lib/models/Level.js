@@ -1,15 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const levelSchema = new mongoose.Schema({
-  levelNumber: { 
-    type: Number, required: true, unique: true 
+  levelNumber: {
+    type: Number,
+    required: true,
+    unique: true,
   },
-  title: { 
-    type: String 
+  title: {
+    type: String,
   },
-  description: { 
-    type: String 
+  description: {
+    type: String,
   },
 });
 
-export const Level = mongoose.models.Level || mongoose.model("Level", levelSchema);
+export const Level =
+  mongoose.models.Level || mongoose.model("Level", levelSchema);

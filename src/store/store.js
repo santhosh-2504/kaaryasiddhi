@@ -10,7 +10,6 @@ import chatReducer from "@/store/slices/chatSlice";
 import practiceReducer from "@/store/slices/practiceSlice";
 import paymentReducer from "@/store/slices/paymentSlice";
 
-
 export const store = configureStore({
   reducer: {
     user: userReducer,
@@ -22,7 +21,6 @@ export const store = configureStore({
     chat: chatReducer,
     practice: practiceReducer,
     payment: paymentReducer,
-
   },
 });
 

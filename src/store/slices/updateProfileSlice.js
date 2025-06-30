@@ -46,20 +46,15 @@ export const updateProfile = (data) => async (dispatch) => {
   dispatch(updateProfileSlice.actions.updateProfileRequest());
   try {
     // Convert FormData to plain object if it's a FormData instance
-    const payload = data instanceof FormData 
-      ? Object.fromEntries(data.entries()) 
-      : data;
+    const payload =
+      data instanceof FormData ? Object.fromEntries(data.entries()) : data;
 
     console.log("Profile Update Payload:", payload);
 
-    const response = await axios.put(
-      '/api/auth/update-profile',
-      payload,
-      {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" }, // Change to JSON
-      }
-    );
+    const response = await axios.put("/api/auth/update-profile", payload, {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" }, // Change to JSON
+    });
 
     console.log("Profile Update Response:", response.data);
 
@@ -68,8 +63,8 @@ export const updateProfile = (data) => async (dispatch) => {
     console.error("Profile Update Error:", error.response?.data);
     dispatch(
       updateProfileSlice.actions.updateProfileFailed(
-        error.response?.data?.message || "Failed to update profile."
-      )
+        error.response?.data?.message || "Failed to update profile.",
+      ),
     );
   }
 };
@@ -77,20 +72,16 @@ export const updateProfile = (data) => async (dispatch) => {
 export const updatePassword = (data) => async (dispatch) => {
   dispatch(updateProfileSlice.actions.updatePasswordRequest());
   try {
-    const response = await axios.put(
-      "/api/auth/update-password",
-      data,
-      {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await axios.put("/api/auth/update-password", data, {
+      withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+    });
     dispatch(updateProfileSlice.actions.updatePasswordSuccess());
   } catch (error) {
     dispatch(
       updateProfileSlice.actions.updatePasswordFailed(
-        error.response.data.message || "Failed to update password."
-      )
+        error.response.data.message || "Failed to update password.",
+      ),
     );
   }
 };

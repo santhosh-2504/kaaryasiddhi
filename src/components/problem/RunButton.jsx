@@ -1,5 +1,9 @@
 import { buildFullSourceCode } from "@/utils/buildFullSourceCode";
-import { getActiveKey, getSelectedKeyIndex, incrementKeyUsage } from "@/lib/keys";
+import {
+  getActiveKey,
+  getSelectedKeyIndex,
+  incrementKeyUsage,
+} from "@/lib/keys";
 import { languageMap } from "@/utils/languageMap";
 
 export default function RunButton({ userCode, problem, setOutput, language }) {
@@ -33,7 +37,12 @@ export default function RunButton({ userCode, problem, setOutput, language }) {
         throw new Error(`Unsupported language: ${language}`);
       }
 
-      const fullCode = buildFullSourceCode(language, userCode, problem, publicTests);
+      const fullCode = buildFullSourceCode(
+        language,
+        userCode,
+        problem,
+        publicTests,
+      );
       //console.log("Full code sent to Judge0:", fullCode); // Debug log
 
       const res = await fetch(
@@ -50,7 +59,7 @@ export default function RunButton({ userCode, problem, setOutput, language }) {
             language_id: languageId,
             stdin: "",
           }),
-        }
+        },
       );
 
       if (!res.ok) {
@@ -65,7 +74,10 @@ export default function RunButton({ userCode, problem, setOutput, language }) {
       // Check for compilation or runtime errors
       if (data.status?.id === 6 || data.compile_output) {
         // Compilation Error (status.id 6 typically indicates compilation failure)
-        const errorMessage = data.compile_output?.trim() || data.stderr?.trim() || "Unknown compilation error";
+        const errorMessage =
+          data.compile_output?.trim() ||
+          data.stderr?.trim() ||
+          "Unknown compilation error";
         setOutput(`💥 Compilation Error: ${errorMessage}`);
         return;
       } else if (data.status?.id >= 7 && data.status?.id <= 12) {

@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-
 export const sendMessage = createAsyncThunk(
   "chat/sendMessage",
   async (userMessage, { dispatch, getState }) => {
@@ -18,7 +17,7 @@ export const sendMessage = createAsyncThunk(
     return {
       aiReply: data.reply,
     };
-  }
+  },
 );
 
 const chatSlice = createSlice({
@@ -42,11 +41,17 @@ const chatSlice = createSlice({
         state.loading = true;
       })
       .addCase(sendMessage.fulfilled, (state, action) => {
-        state.messages.push({ role: "assistant", content: action.payload.aiReply });
+        state.messages.push({
+          role: "assistant",
+          content: action.payload.aiReply,
+        });
         state.loading = false;
       })
       .addCase(sendMessage.rejected, (state) => {
-        state.messages.push({ role: "assistant", content: "Sorry, something went wrong. Please try again." });
+        state.messages.push({
+          role: "assistant",
+          content: "Sorry, something went wrong. Please try again.",
+        });
         state.loading = false;
       });
   },

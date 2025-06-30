@@ -26,7 +26,7 @@ export const fetchPendingSubmissions = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 // Async thunk to update submission status
@@ -66,7 +66,7 @@ export const updateSubmissionStatus = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 const submissionSlice = createSlice({
@@ -110,10 +110,10 @@ const submissionSlice = createSlice({
       .addCase(updateSubmissionStatus.fulfilled, (state, action) => {
         const updatedSubmission = action.payload;
         state.updateLoading[updatedSubmission._id] = false;
-        
+
         // Remove the updated submission from the list since it's no longer pending
         state.submissions = state.submissions.filter(
-          (submission) => submission._id !== updatedSubmission._id
+          (submission) => submission._id !== updatedSubmission._id,
         );
       })
       .addCase(updateSubmissionStatus.rejected, (state, action) => {

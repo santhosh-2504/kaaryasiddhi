@@ -36,7 +36,7 @@ export function isClientSide() {
 
 export function getRapidApiKeys() {
   if (!isClientSide()) return [];
-  
+
   try {
     const keys = localStorage.getItem("rapidapi_keys");
     return keys ? JSON.parse(keys) : [];
@@ -48,7 +48,7 @@ export function getRapidApiKeys() {
 
 export function getSelectedKeyIndex() {
   if (!isClientSide()) return null;
-  
+
   try {
     const index = localStorage.getItem("selected_rapidapi_key_index");
     const parsedIndex = parseInt(index, 10);
@@ -61,23 +61,23 @@ export function getSelectedKeyIndex() {
 
 export function getActiveKey() {
   if (!isClientSide()) return null;
-  
+
   const keys = getRapidApiKeys();
   const index = getSelectedKeyIndex();
-  
+
   if (keys.length === 0) return null;
   if (index === null || index < 0 || index >= keys.length) {
     // Auto-select first key if no valid selection
     setSelectedKeyIndex(0);
     return keys[0] || null;
   }
-  
+
   return keys[index] || null;
 }
 
 export function setSelectedKeyIndex(index) {
   if (!isClientSide()) return;
-  
+
   try {
     if (index === null || index === undefined) {
       localStorage.removeItem("selected_rapidapi_key_index");
@@ -91,7 +91,7 @@ export function setSelectedKeyIndex(index) {
 
 export function incrementKeyUsage(index) {
   if (!isClientSide()) return;
-  
+
   const keys = getRapidApiKeys();
   const today = new Date().toISOString().split("T")[0];
 
@@ -103,7 +103,7 @@ export function incrementKeyUsage(index) {
   try {
     // Create a copy to avoid mutations
     const updatedKeys = [...keys];
-    
+
     if (updatedKeys[index].lastUsed === today) {
       updatedKeys[index].usedToday += 1;
     } else {
@@ -119,7 +119,7 @@ export function incrementKeyUsage(index) {
 
 export function saveRapidApiKeys(keys) {
   if (!isClientSide()) return;
-  
+
   try {
     localStorage.setItem("rapidapi_keys", JSON.stringify(keys));
   } catch (error) {
@@ -139,11 +139,11 @@ export function validateKeyStructure(keyObj) {
 
 export function migrateOldKeys() {
   if (!isClientSide()) return;
-  
+
   try {
     const stored = getRapidApiKeys();
     if (stored.length === 0) return;
-    
+
     // Check if migration is needed (old format was array of strings)
     if (typeof stored[0] === "string") {
       const today = new Date().toISOString().split("T")[0];
@@ -153,7 +153,7 @@ export function migrateOldKeys() {
         usedToday: 0,
         lastUsed: today,
       }));
-      
+
       saveRapidApiKeys(migratedKeys);
       console.log("Migrated old API keys to new format");
     }

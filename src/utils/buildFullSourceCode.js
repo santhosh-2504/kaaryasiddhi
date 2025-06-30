@@ -72,12 +72,19 @@ export function buildFullSourceCode(language, userCode, problem, tests) {
   const inputArgs = (args) => args.join(", ");
 
   const buildPython = () => {
-    const calls = tests.map(tc => `print(${functionName}(${inputArgs(tc.input)}))`).join("\n");
+    const calls = tests
+      .map((tc) => `print(${functionName}(${inputArgs(tc.input)}))`)
+      .join("\n");
     return `${userCode}\n\n${calls}`;
   };
 
   const buildJava = () => {
-    const calls = tests.map(tc => `    System.out.println(${functionName}(${inputArgs(tc.input)}));`).join("\n");
+    const calls = tests
+      .map(
+        (tc) =>
+          `    System.out.println(${functionName}(${inputArgs(tc.input)}));`,
+      )
+      .join("\n");
     return `
 public class Main {
 ${userCode}
@@ -90,7 +97,12 @@ ${calls}
   };
 
   const buildCpp = () => {
-    const calls = tests.map(tc => `  std::cout << ${functionName}(${inputArgs(tc.input)}) << std::endl;`).join("\n");
+    const calls = tests
+      .map(
+        (tc) =>
+          `  std::cout << ${functionName}(${inputArgs(tc.input)}) << std::endl;`,
+      )
+      .join("\n");
     return `
 #include <iostream>
 using namespace std;
@@ -105,15 +117,22 @@ ${calls}
   };
 
   const buildJs = () => {
-    const calls = tests.map(tc => `console.log(${functionName}(${inputArgs(tc.input)}));`).join("\n");
+    const calls = tests
+      .map((tc) => `console.log(${functionName}(${inputArgs(tc.input)}));`)
+      .join("\n");
     return `${userCode}\n\n${calls}`;
   };
 
   switch (language) {
-    case "python": return buildPython();
-    case "java": return buildJava();
-    case "cpp": return buildCpp();
-    case "javascript": return buildJs();
-    default: throw new Error(`Unsupported language: ${language}`);
+    case "python":
+      return buildPython();
+    case "java":
+      return buildJava();
+    case "cpp":
+      return buildCpp();
+    case "javascript":
+      return buildJs();
+    default:
+      throw new Error(`Unsupported language: ${language}`);
   }
 }

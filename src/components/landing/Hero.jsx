@@ -1,10 +1,16 @@
-import { LineChart, Pill, Target } from 'lucide-react';
-import PropTypes from 'prop-types';
-import { useRouter } from 'next/navigation';
-import { useSelector } from 'react-redux';
+import { LineChart, Pill, Target } from "lucide-react";
+import PropTypes from "prop-types";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
-const FeatureCard = ({ icon: Icon, title, description, onClick, className }) => (
-  <div 
+const FeatureCard = ({
+  icon: Icon,
+  title,
+  description,
+  onClick,
+  className,
+}) => (
+  <div
     className={`bg-white dark:bg-slate-800 shadow-lg rounded-xl p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-100 dark:border-slate-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700 ${className}`}
     role="article"
     onClick={onClick}
@@ -26,50 +32,56 @@ FeatureCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
-const Hero = ({ className = '' }) => {
+const Hero = ({ className = "" }) => {
   const router = useRouter();
-  const {isAuthenticated} = useSelector((state) => state.user);
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   const handleStartJourney = () => {
     if (isAuthenticated) {
-      router.push('/path');
+      router.push("/path");
     } else {
-      window.open("https://wa.me/919014185655?text=Hi%20Santhosh%2C%20I%20found%20your%20mentorship%20program%20interesting!%20I%20have%20some%20questions", "_blank");
+      window.open(
+        "https://wa.me/919014185655?text=Hi%20Santhosh%2C%20I%20found%20your%20mentorship%20program%20interesting!%20I%20have%20some%20questions",
+        "_blank",
+      );
     }
   };
 
   return (
-    <section 
+    <section
       className={`bg-gradient-to-br from-slate-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-5 ${className}`}
       aria-label="Hero section"
     >
       <div className="container mx-auto px-6">
         <div className="py-12 text-center">
           <div className="flex justify-center mb-6">
-            <img 
-              src="/images/logo (2).png" 
-              alt="KaaryaSiddhi Logo" 
+            <img
+              src="/images/logo (2).png"
+              alt="KaaryaSiddhi Logo"
               className="h-16 w-auto dark:invert"
             />
           </div>
-          
+
           <div className="mb-4">
             <p className="text-emerald-700 dark:text-emerald-300 font-medium text-lg mb-2 tracking-wide">
               "Kaarya. Karma. Siddhi."
             </p>
           </div>
-          
+
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-800 dark:text-white mb-4 leading-tight">
-            Empowering Students with{' '}
-            <span className="text-emerald-600 dark:text-emerald-400">Skills That Matter</span>
+            Empowering Students with{" "}
+            <span className="text-emerald-600 dark:text-emerald-400">
+              Skills That Matter
+            </span>
           </h1>
-          
+
           <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            At KaaryaSiddhi, we guide you from college to career with real-world tasks, 
-            personal mentorship, and profile-building on GitHub and LinkedIn.
+            At KaaryaSiddhi, we guide you from college to career with real-world
+            tasks, personal mentorship, and profile-building on GitHub and
+            LinkedIn.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
@@ -89,7 +101,7 @@ const Hero = ({ className = '' }) => {
             </button> */}
           </div>
 
-          <div 
+          <div
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
             role="region"
             aria-label="Features"
@@ -117,7 +129,7 @@ const Hero = ({ className = '' }) => {
 };
 
 Hero.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Hero;

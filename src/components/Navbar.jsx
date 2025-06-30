@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSun, FaMoon, FaFire } from "react-icons/fa";
 import { useTheme } from "@/store/context/ThemeContext";
@@ -37,28 +37,28 @@ const Navbar = () => {
 
   // Function to check if current route matches the link
   const isActiveRoute = (href) => {
-    if (href === '/') {
-      return router.pathname === '/';
+    if (href === "/") {
+      return router.pathname === "/";
     }
     return router.pathname.startsWith(href);
   };
 
   // Navigation links configuration
   const navigationLinks = [
-    { href: '/', label: 'HOME' },
-    { href: '/path', label: 'GROWTH ROADMAP' },
-    { href: '/resources', label: 'RESOURCES' },
+    { href: "/", label: "HOME" },
+    { href: "/path", label: "GROWTH ROADMAP" },
+    { href: "/resources", label: "RESOURCES" },
   ];
 
   const authenticatedLinks = [
-    { href: '/practice', label: 'PRACTICE' },
-    { href: '/dashboard', label: 'PROFILE' },
+    { href: "/practice", label: "PRACTICE" },
+    { href: "/dashboard", label: "PROFILE" },
   ];
 
   const adminLinks = [
-    { href: '/admin', label: 'ADMIN OVERVIEW' },
-    { href: '/submissions', label: 'SUBMISSIONS' },
-    { href: '/payments', label: 'PAYMENTS' },
+    { href: "/admin", label: "ADMIN OVERVIEW" },
+    { href: "/submissions", label: "SUBMISSIONS" },
+    { href: "/payments", label: "PAYMENTS" },
   ];
 
   const NavLink = ({ href, children, mobile = false }) => {
@@ -66,11 +66,11 @@ const Navbar = () => {
     const baseClasses = mobile
       ? "block px-3 py-2 rounded-md text-base font-medium transition-all duration-200"
       : "px-3 py-2 rounded-md transition-all duration-200 font-medium";
-    
+
     const activeClasses = mobile
       ? "bg-emerald-600 text-white shadow-md"
       : "bg-emerald-600 text-white shadow-md";
-    
+
     const inactiveClasses = mobile
       ? "text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-700 dark:hover:text-emerald-300"
       : "text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-700 dark:hover:text-emerald-300";
@@ -89,7 +89,7 @@ const Navbar = () => {
   return (
     <>
       {/* Mobile Navigation Bar */}
-      <nav 
+      <nav
         className={`md:hidden fixed w-full top-0 z-50 bg-gradient-to-r from-slate-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 shadow-lg backdrop-blur-sm transition-all duration-200 
         ${show ? "h-screen" : ""}`}
         role="navigation"
@@ -100,9 +100,9 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center" aria-label="Home">
-                <img 
-                  src="/images/logo (2).png" 
-                  alt="Website logo" 
+                <img
+                  src="/images/logo (2).png"
+                  alt="Website logo"
                   className="h-8 w-auto dark:invert"
                 />
               </Link>
@@ -113,8 +113,14 @@ const Navbar = () => {
               {/* Streak Icon - Only show when authenticated */}
               {isAuthenticated && (
                 <div className="flex items-center space-x-1 text-slate-800 dark:text-slate-100 bg-white/70 dark:bg-slate-800/70 px-3 py-1 rounded-full shadow-sm">
-                  <FaFire className="w-4 h-4 text-orange-500" aria-hidden="true" />
-                  <span className="text-sm font-medium" aria-label={`Current streak: ${user.streak} days`}>
+                  <FaFire
+                    className="w-4 h-4 text-orange-500"
+                    aria-hidden="true"
+                  />
+                  <span
+                    className="text-sm font-medium"
+                    aria-label={`Current streak: ${user.streak} days`}
+                  >
                     {user.streak}
                   </span>
                 </div>
@@ -123,12 +129,20 @@ const Navbar = () => {
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition-colors duration-200"
-                aria-label={theme ? "Switch to light mode" : "Switch to dark mode"}
+                aria-label={
+                  theme ? "Switch to light mode" : "Switch to dark mode"
+                }
               >
                 {theme ? (
-                  <FaSun className="w-5 h-5 text-yellow-500" aria-hidden="true" />
+                  <FaSun
+                    className="w-5 h-5 text-yellow-500"
+                    aria-hidden="true"
+                  />
                 ) : (
-                  <FaMoon className="w-5 h-5 text-slate-600" aria-hidden="true" />
+                  <FaMoon
+                    className="w-5 h-5 text-slate-600"
+                    aria-hidden="true"
+                  />
                 )}
               </button>
               <button
@@ -138,14 +152,17 @@ const Navbar = () => {
                 aria-expanded={show}
                 aria-controls="mobile-menu"
               >
-                <GiHamburgerMenu className="w-6 h-6 text-slate-700 dark:text-slate-200" aria-hidden="true" />
+                <GiHamburgerMenu
+                  className="w-6 h-6 text-slate-700 dark:text-slate-200"
+                  aria-hidden="true"
+                />
               </button>
             </div>
           </div>
 
           {/* Mobile Navigation Menu */}
-          <div 
-            className={`${show ? 'block' : 'hidden'}`}
+          <div
+            className={`${show ? "block" : "hidden"}`}
             id="mobile-menu"
             role="region"
             aria-label="Mobile navigation"
@@ -204,7 +221,8 @@ const Navbar = () => {
                 Confirm Logout
               </h3>
               <p className="text-slate-600 dark:text-slate-300 mb-6">
-                Are you sure you want to log out? You will need to sign in again to access your account.
+                Are you sure you want to log out? You will need to sign in again
+                to access your account.
               </p>
               <div className="flex space-x-4 justify-center">
                 <button
@@ -243,29 +261,43 @@ const Navbar = () => {
                   className="h-8 w-auto dark:invert"
                 />
               </Link> */}
-              
+
               {/* Streak and Theme Toggle Row */}
               <div className="flex items-center justify-between">
                 {/* Streak Display */}
                 {isAuthenticated && (
                   <div className="flex items-center space-x-1 text-slate-800 dark:text-slate-100 bg-white/70 dark:bg-slate-800/70 px-3 py-1 rounded-full shadow-sm">
-                    <FaFire className="w-4 h-4 text-orange-500" aria-hidden="true" />
-                    <span className="text-sm font-medium" aria-label={`Current streak: ${user.streak} days`}>
+                    <FaFire
+                      className="w-4 h-4 text-orange-500"
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="text-sm font-medium"
+                      aria-label={`Current streak: ${user.streak} days`}
+                    >
                       {user.streak}
                     </span>
                   </div>
                 )}
-                
+
                 {/* Theme Toggle */}
                 <button
                   onClick={toggleTheme}
                   className="p-2 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition-colors duration-200"
-                  aria-label={theme ? "Switch to light mode" : "Switch to dark mode"}
+                  aria-label={
+                    theme ? "Switch to light mode" : "Switch to dark mode"
+                  }
                 >
                   {theme ? (
-                    <FaSun className="w-4 h-4 text-yellow-500" aria-hidden="true" />
+                    <FaSun
+                      className="w-4 h-4 text-yellow-500"
+                      aria-hidden="true"
+                    />
                   ) : (
-                    <FaMoon className="w-4 h-4 text-slate-600 dark:text-slate-300" aria-hidden="true" />
+                    <FaMoon
+                      className="w-4 h-4 text-slate-600 dark:text-slate-300"
+                      aria-hidden="true"
+                    />
                   )}
                 </button>
               </div>
@@ -279,7 +311,7 @@ const Navbar = () => {
                     {link.label}
                   </NavLink>
                 ))}
-              
+
                 {isAuthenticated && user.role === "admin" && (
                   <>
                     {adminLinks.map((link) => (
@@ -289,7 +321,7 @@ const Navbar = () => {
                     ))}
                   </>
                 )}
-                
+
                 {isAuthenticated ? (
                   <>
                     {authenticatedLinks.map((link) => (
@@ -299,9 +331,7 @@ const Navbar = () => {
                     ))}
                   </>
                 ) : (
-                  <NavLink href="/login">
-                    LOGIN
-                  </NavLink>
+                  <NavLink href="/login">LOGIN</NavLink>
                 )}
               </div>
             </div>

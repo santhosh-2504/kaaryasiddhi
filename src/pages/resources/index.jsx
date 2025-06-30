@@ -1,15 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchResources, setSearchQuery, setFilterType, setFilterLevel } from "@/store/slices/resourceSlice";
+import {
+  fetchResources,
+  setSearchQuery,
+  setFilterType,
+  setFilterLevel,
+} from "@/store/slices/resourceSlice";
 
 export default function ResourcePage() {
   const dispatch = useDispatch();
-  const { items, isLoading, error, searchQuery, filterType, filterLevel } = useSelector(
-    (state) => state.resources
-  );
+  const { items, isLoading, error, searchQuery, filterType, filterLevel } =
+    useSelector((state) => state.resources);
   const user = useSelector((state) => state.user.user);
   const currentUserLevel = user?.isSubscribed ? (user?.currentLevel ?? 0) : 0;
-
 
   useEffect(() => {
     dispatch(fetchResources());
@@ -18,31 +21,38 @@ export default function ResourcePage() {
   const filtered = items.filter((res) => {
     // First check if resource level is accessible to user
     const isLevelAccessible = res.level <= currentUserLevel;
-    
+
     if (!isLevelAccessible) {
       return false; // Hide resources from higher levels completely
     }
-    
+
     const matchesSearch =
       res.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (res.tags && res.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())));
+      (res.tags &&
+        res.tags.some((tag) =>
+          tag.toLowerCase().includes(searchQuery.toLowerCase()),
+        ));
     const matchesType = !filterType || res.type === filterType;
     const matchesLevel = !filterLevel || res.level === parseInt(filterLevel);
     return matchesSearch && matchesType && matchesLevel;
   });
 
-  const groupedByLevel = Array.from({ length: currentUserLevel + 1 }, (_, level) => ({
-    level,
-    resources: filtered.filter((r) => r.level === level)
-  }));
+  const groupedByLevel = Array.from(
+    { length: currentUserLevel + 1 },
+    (_, level) => ({
+      level,
+      resources: filtered.filter((r) => r.level === level),
+    }),
+  );
 
   const getTypeColor = (type) => {
     const colors = {
       Video: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
       Blog: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
       PDF: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
-      Course: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
-      Other: "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300"
+      Course:
+        "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300",
+      Other: "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300",
     };
     return colors[type] || colors.Other;
   };
@@ -57,7 +67,8 @@ export default function ResourcePage() {
               Learning Resources
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-              Discover curated resources to enhance your learning journey across all levels
+              Discover curated resources to enhance your learning journey across
+              all levels
             </p>
           </div>
 
@@ -66,7 +77,10 @@ export default function ResourcePage() {
             <div className="flex flex-col lg:flex-row gap-4">
               {/* Search Input */}
               <div className="flex-1">
-                <label htmlFor="search" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                <label
+                  htmlFor="search"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                >
                   Search Resources
                 </label>
                 <input
@@ -81,7 +95,10 @@ export default function ResourcePage() {
 
               {/* Type Filter */}
               <div className="lg:w-48">
-                <label htmlFor="type-filter" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                <label
+                  htmlFor="type-filter"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                >
                   Resource Type
                 </label>
                 <select
@@ -101,7 +118,10 @@ export default function ResourcePage() {
 
               {/* Level Filter */}
               <div className="lg:w-48">
-                <label htmlFor="level-filter" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                <label
+                  htmlFor="level-filter"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                >
                   Level
                 </label>
                 <select
@@ -127,32 +147,63 @@ export default function ResourcePage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full mb-4">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600"></div>
               </div>
-              <p className="text-lg font-medium text-slate-600 dark:text-slate-300">Loading resources...</p>
+              <p className="text-lg font-medium text-slate-600 dark:text-slate-300">
+                Loading resources...
+              </p>
             </div>
           ) : error ? (
             <div className="bg-white dark:bg-slate-800/50 rounded-2xl shadow-xl backdrop-blur-sm border border-red-200 dark:border-red-800 p-12 text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full mb-4">
-                <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                <svg
+                  className="w-8 h-8 text-red-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                  />
                 </svg>
               </div>
-              <p className="text-lg font-medium text-red-600 dark:text-red-400">Error: {error}</p>
+              <p className="text-lg font-medium text-red-600 dark:text-red-400">
+                Error: {error}
+              </p>
             </div>
           ) : filtered.length === 0 ? (
             <div className="bg-white dark:bg-slate-800/50 rounded-2xl shadow-xl backdrop-blur-sm border border-slate-200 dark:border-slate-700 p-12 text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full mb-4">
-                <svg className="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.412M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                <svg
+                  className="w-8 h-8 text-slate-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.412M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  />
                 </svg>
               </div>
-              <p className="text-lg font-medium text-slate-600 dark:text-slate-300">No resources found matching your criteria</p>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Try adjusting your search or filters</p>
+              <p className="text-lg font-medium text-slate-600 dark:text-slate-300">
+                No resources found matching your criteria
+              </p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                Try adjusting your search or filters
+              </p>
             </div>
           ) : (
             <div className="space-y-8">
               {groupedByLevel.map(({ level, resources }) =>
                 resources.length > 0 ? (
-                  <div key={level} className="bg-white dark:bg-slate-800/50 rounded-2xl shadow-xl backdrop-blur-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+                  <div
+                    key={level}
+                    className="bg-white dark:bg-slate-800/50 rounded-2xl shadow-xl backdrop-blur-sm border border-slate-200 dark:border-slate-700 overflow-hidden"
+                  >
                     {/* Level Header */}
                     <div className="bg-gradient-to-r from-emerald-500 to-blue-500 px-6 py-4">
                       <h2 className="text-2xl font-bold text-white flex items-center gap-3">
@@ -161,7 +212,8 @@ export default function ResourcePage() {
                         </span>
                         Level {level}
                         <span className="ml-auto text-sm font-normal bg-white/20 px-3 py-1 rounded-full">
-                          {resources.length} resource{resources.length !== 1 ? 's' : ''}
+                          {resources.length} resource
+                          {resources.length !== 1 ? "s" : ""}
                         </span>
                       </h2>
                     </div>
@@ -189,11 +241,13 @@ export default function ResourcePage() {
                                   {res.title}
                                 </h3>
                               )}
-                              <span className={`shrink-0 px-2 py-1 text-xs font-medium rounded-md ml-2 ${getTypeColor(res.type)}`}>
+                              <span
+                                className={`shrink-0 px-2 py-1 text-xs font-medium rounded-md ml-2 ${getTypeColor(res.type)}`}
+                              >
                                 {res.type}
                               </span>
                             </div>
-                            
+
                             {res.description && (
                               <p className="text-sm text-slate-600 dark:text-slate-400 mb-3 line-clamp-2">
                                 {res.description}
@@ -227,8 +281,18 @@ export default function ResourcePage() {
                                   className="inline-flex items-center text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-200"
                                 >
                                   View Resource
-                                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                  <svg
+                                    className="w-4 h-4 ml-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                    />
                                   </svg>
                                 </a>
                               </div>
@@ -238,7 +302,7 @@ export default function ResourcePage() {
                       </div>
                     </div>
                   </div>
-                ) : null
+                ) : null,
               )}
             </div>
           )}

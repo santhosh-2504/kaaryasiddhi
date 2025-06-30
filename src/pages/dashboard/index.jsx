@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -18,14 +18,14 @@ const Dashboard = () => {
   // const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const { loading, isAuthenticated, error, user } = useSelector(
-    (state) => state.user
+    (state) => state.user,
   );
 
   const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [componentName]);
 
   // const handleLogoutClick = () => {
@@ -67,7 +67,7 @@ const Dashboard = () => {
           <div className="dashboard-container flex flex-col md:flex-row gap-6">
             {/* Mobile Menu Backdrop */}
             {show && (
-              <div 
+              <div
                 className="fixed inset-0 bg-black/50 z-30 md:hidden"
                 onClick={() => setShow(false)}
               />
@@ -86,7 +86,6 @@ const Dashboard = () => {
                   { name: "Update Password", component: "Update Password" },
                   { name: "Pay Fee", component: "Pay Fee" },
                   { name: "Keys", component: "Keys" },
-
                 ].map(({ name, component }, index) => (
                   <li key={index}>
                     <button
@@ -134,7 +133,7 @@ const Dashboard = () => {
                   }`}
                 />
               </div>
-              
+
               {/* Dynamic Component Rendering */}
               {(() => {
                 switch (componentName) {

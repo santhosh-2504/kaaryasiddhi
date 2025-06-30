@@ -42,7 +42,7 @@ export default function ProblemsPage() {
   useEffect(() => {
     if (problem) {
       const starter = problem.starterCode.find(
-        (s) => s.language === selectedLanguage
+        (s) => s.language === selectedLanguage,
       );
       setCode(starter?.code || "");
       ////console.log("Updated code for language", selectedLanguage, ":", starter?.code); // Debug log
@@ -78,7 +78,7 @@ export default function ProblemsPage() {
       const constrainedWidth = Math.min(Math.max(newLeftWidth, 20), 80);
       setLeftPanelWidth(constrainedWidth);
     },
-    [isResizingHorizontal]
+    [isResizingHorizontal],
   );
 
   const handleVerticalMouseMove = useCallback(
@@ -89,11 +89,12 @@ export default function ProblemsPage() {
       const headerHeight = 80;
       const availableHeight = rightPanelRect.height - headerHeight;
       const newCodeHeight =
-        ((e.clientY - rightPanelRect.top - headerHeight) / availableHeight) * 100;
+        ((e.clientY - rightPanelRect.top - headerHeight) / availableHeight) *
+        100;
       const constrainedHeight = Math.min(Math.max(newCodeHeight, 30), 85);
       setCodeEditorHeight(constrainedHeight);
     },
-    [isResizingVertical]
+    [isResizingVertical],
   );
 
   const handleMouseUp = useCallback(() => {
@@ -159,7 +160,14 @@ export default function ProblemsPage() {
           <LanguageSelector
             selectedLanguage={selectedLanguage}
             setSelectedLanguage={setSelectedLanguage}
-            supportedLanguages={problem.supportedLanguages || ["python", "javascript", "java", "cpp"]}
+            supportedLanguages={
+              problem.supportedLanguages || [
+                "python",
+                "javascript",
+                "java",
+                "cpp",
+              ]
+            }
           />
         </div>
       </div>

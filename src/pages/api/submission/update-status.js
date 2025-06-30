@@ -11,7 +11,9 @@ if (!process.env.JWT_SECRET_KEY) {
 
 export default catchAsync(async (req, res) => {
   if (req.method !== "PUT") {
-    return res.status(405).json({ success: false, message: "Method not allowed" });
+    return res
+      .status(405)
+      .json({ success: false, message: "Method not allowed" });
   }
 
   await dbConnect();
@@ -129,9 +131,10 @@ export default catchAsync(async (req, res) => {
   const updatedSubmission = await Submission.findByIdAndUpdate(
     submissionId,
     updateData,
-    { new: true }
-  ).populate("userId", "name email")
-   .populate("taskId", "title type levelNumber");
+    { new: true },
+  )
+    .populate("userId", "name email")
+    .populate("taskId", "title type levelNumber");
 
   res.status(200).json({
     success: true,

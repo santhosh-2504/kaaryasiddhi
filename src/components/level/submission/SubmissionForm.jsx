@@ -1,4 +1,4 @@
-import { Send } from 'lucide-react';
+import { Send } from "lucide-react";
 
 const SubmissionForm = ({
   taskId,
@@ -8,7 +8,7 @@ const SubmissionForm = ({
   submissionError,
   onSubmissionInputChange,
   onShowSubmissionForm,
-  onSubmitTask
+  onSubmitTask,
 }) => {
   return (
     <div className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-600">
@@ -25,7 +25,7 @@ const SubmissionForm = ({
             className="w-full px-3 py-2 text-sm text-black sm:text-base border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-slate-700 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500"
           />
         </div>
-        
+
         {submissionError && (
           <div className="text-red-600 dark:text-red-400 text-sm p-2 bg-red-50 dark:bg-red-900/20 rounded-md border border-red-200 dark:border-red-800">
             {submissionError}

@@ -5,8 +5,8 @@ const nextConfig = {
   env: {
     JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
     JWT_EXPIRE: process.env.JWT_EXPIRE,
-    COOKIE_EXPIRE: process.env.COOKIE_EXPIRE
-  }
+    COOKIE_EXPIRE: process.env.COOKIE_EXPIRE,
+  },
 };
 
 export default nextConfig;

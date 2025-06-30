@@ -2,7 +2,6 @@ export default function StreakModal({ onClose, streak }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md bg-black/30 px-4">
       <div className="w-full max-w-md sm:max-w-lg bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-2xl relative border border-gray-200 dark:border-slate-700 transition-all animate-bounce-in">
-        
         {/* Coin */}
         <div className="w-32 h-32 rounded-full bg-yellow-400 border-4 border-yellow-600 mx-auto relative coin-spin flex items-center justify-center shadow-lg image-rendering-pixel">
           <div className="text-5xl animate-fire-glow shake-slow z-10">🔥</div>
@@ -71,11 +70,16 @@ export default function StreakModal({ onClose, streak }) {
           }
 
           @keyframes fire-glow {
-            0%, 100% {
-              text-shadow: 0 0 5px #f87171, 0 0 10px #facc15;
+            0%,
+            100% {
+              text-shadow:
+                0 0 5px #f87171,
+                0 0 10px #facc15;
             }
             50% {
-              text-shadow: 0 0 10px #f87171, 0 0 20px #facc15;
+              text-shadow:
+                0 0 10px #f87171,
+                0 0 20px #facc15;
             }
           }
 

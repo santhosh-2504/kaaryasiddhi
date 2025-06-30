@@ -1,29 +1,38 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const testCaseSchema = new mongoose.Schema({
-  input: { type: [mongoose.Schema.Types.Mixed], required: true },
-  expectedOutput: { type: mongoose.Schema.Types.Mixed, required: true },
-  explanation: { type: String }, // Optional, useful for public TCs
-  isHidden: { type: Boolean, default: false }
-}, { _id: false });
-
-const starterCodeSchema = new mongoose.Schema({
-  language: {
-    type: String,
-    enum: ["python", "java", "cpp", "javascript"],
-    required: true
+const testCaseSchema = new mongoose.Schema(
+  {
+    input: { type: [mongoose.Schema.Types.Mixed], required: true },
+    expectedOutput: { type: mongoose.Schema.Types.Mixed, required: true },
+    explanation: { type: String }, // Optional, useful for public TCs
+    isHidden: { type: Boolean, default: false },
   },
-  code: { type: String, required: true }
-}, { _id: false });
+  { _id: false },
+);
 
-const solutionTemplateSchema = new mongoose.Schema({
-  language: {
-    type: String,
-    enum: ["python", "java", "cpp", "javascript"],
-    required: true
+const starterCodeSchema = new mongoose.Schema(
+  {
+    language: {
+      type: String,
+      enum: ["python", "java", "cpp", "javascript"],
+      required: true,
+    },
+    code: { type: String, required: true },
   },
-  code: { type: String, required: true }
-}, { _id: false });
+  { _id: false },
+);
+
+const solutionTemplateSchema = new mongoose.Schema(
+  {
+    language: {
+      type: String,
+      enum: ["python", "java", "cpp", "javascript"],
+      required: true,
+    },
+    code: { type: String, required: true },
+  },
+  { _id: false },
+);
 
 const problemSchema = new mongoose.Schema({
   // Basic info
@@ -37,7 +46,7 @@ const problemSchema = new mongoose.Schema({
   supportedLanguages: {
     type: [String],
     enum: ["python", "java", "cpp", "javascript"],
-    default: ["python"]
+    default: ["python"],
   },
   starterCode: [starterCodeSchema],
   solutionTemplates: [solutionTemplateSchema],
@@ -54,11 +63,12 @@ const problemSchema = new mongoose.Schema({
   difficulty: {
     type: String,
     enum: ["easy", "medium", "hard"],
-    default: "easy"
+    default: "easy",
   },
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
+  updatedAt: { type: Date, default: Date.now },
 });
 
-export const Problem = mongoose.models.Problem || mongoose.model("Problem", problemSchema);
+export const Problem =
+  mongoose.models.Problem || mongoose.model("Problem", problemSchema);

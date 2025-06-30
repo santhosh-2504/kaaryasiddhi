@@ -3,7 +3,9 @@ export default function QuestionPanel({ question }) {
     return (
       <div className="flex items-center justify-center h-40">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600"></div>
-        <span className="ml-3 text-slate-600 dark:text-slate-300">Loading question...</span>
+        <span className="ml-3 text-slate-600 dark:text-slate-300">
+          Loading question...
+        </span>
       </div>
     );
 
@@ -31,7 +33,9 @@ export default function QuestionPanel({ question }) {
       <div>
         <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
           <div className="w-6 h-6 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center">
-            <span className="text-emerald-600 dark:text-emerald-400 text-sm font-bold">T</span>
+            <span className="text-emerald-600 dark:text-emerald-400 text-sm font-bold">
+              T
+            </span>
           </div>
           Public Test Cases
         </h4>
@@ -48,20 +52,28 @@ export default function QuestionPanel({ question }) {
               </div>
               <div className="space-y-2 text-sm">
                 <div>
-                  <span className="font-medium text-slate-700 dark:text-slate-300">Input:</span>
+                  <span className="font-medium text-slate-700 dark:text-slate-300">
+                    Input:
+                  </span>
                   <code className="ml-2 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-slate-800 dark:text-slate-200">
                     {tc.input}
                   </code>
                 </div>
                 <div>
-                  <span className="font-medium text-slate-700 dark:text-slate-300">Expected:</span>
+                  <span className="font-medium text-slate-700 dark:text-slate-300">
+                    Expected:
+                  </span>
                   <code className="ml-2 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-slate-800 dark:text-slate-200">
                     {tc.expectedOutput}
                   </code>
                 </div>
                 <div>
-                  <span className="font-medium text-slate-700 dark:text-slate-300">Explanation:</span>
-                  <span className="ml-2 text-slate-600 dark:text-slate-400">{tc.explanation}</span>
+                  <span className="font-medium text-slate-700 dark:text-slate-300">
+                    Explanation:
+                  </span>
+                  <span className="ml-2 text-slate-600 dark:text-slate-400">
+                    {tc.explanation}
+                  </span>
                 </div>
               </div>
             </div>

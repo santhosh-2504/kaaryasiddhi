@@ -14,7 +14,6 @@
 //   java: `public class Main {\n  public static void main(String[] args) {\n    // your code here\n  }\n}`
 // };
 
-
 // const dummyQuestion = {
 //   title: "Sum of Even Numbers",
 //   description: `Given an array of integers, find the sum of all even numbers.
@@ -58,7 +57,6 @@
 
 // };
 
-
 //   const [language, setLanguage] = useState("javascript");
 //   const [code, setCode] = useState(starterCode["javascript"]);
 //   const [output, setOutput] = useState("");
@@ -67,14 +65,13 @@
 //   const [codeEditorHeight, setCodeEditorHeight] = useState(70); // Percentage for vertical split in right panel
 //   const [isResizingHorizontal, setIsResizingHorizontal] = useState(false);
 //   const [isResizingVertical, setIsResizingVertical] = useState(false);
-  
+
 //   const containerRef = useRef(null);
 //   const rightPanelRef = useRef(null);
-  
+
 //   useEffect(() => {
 //     setQuestion(dummyQuestion);
 //   }, []);
-  
 
 //   useEffect(() => {
 //     setCode(starterCode[language]);
@@ -99,11 +96,11 @@
 //   // Handle horizontal drag move
 //   const handleHorizontalMouseMove = useCallback((e) => {
 //     if (!isResizingHorizontal || !containerRef.current) return;
-    
+
 //     const container = containerRef.current;
 //     const containerRect = container.getBoundingClientRect();
 //     const newLeftWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100;
-    
+
 //     // Constrain between 20% and 80%
 //     const constrainedWidth = Math.min(Math.max(newLeftWidth, 20), 80);
 //     setLeftPanelWidth(constrainedWidth);
@@ -112,13 +109,13 @@
 //   // Handle vertical drag move
 //   const handleVerticalMouseMove = useCallback((e) => {
 //     if (!isResizingVertical || !rightPanelRef.current) return;
-    
+
 //     const rightPanel = rightPanelRef.current;
 //     const rightPanelRect = rightPanel.getBoundingClientRect();
 //     const headerHeight = 80; // Approximate header height
 //     const availableHeight = rightPanelRect.height - headerHeight;
 //     const newCodeHeight = ((e.clientY - rightPanelRect.top - headerHeight) / availableHeight) * 100;
-    
+
 //     // Constrain between 30% and 85%
 //     const constrainedHeight = Math.min(Math.max(newCodeHeight, 30), 85);
 //     setCodeEditorHeight(constrainedHeight);
@@ -137,7 +134,7 @@
 //     if (isResizingHorizontal) {
 //       document.addEventListener('mousemove', handleHorizontalMouseMove);
 //       document.addEventListener('mouseup', handleMouseUp);
-      
+
 //       return () => {
 //         document.removeEventListener('mousemove', handleHorizontalMouseMove);
 //         document.removeEventListener('mouseup', handleMouseUp);
@@ -150,7 +147,7 @@
 //     if (isResizingVertical) {
 //       document.addEventListener('mousemove', handleVerticalMouseMove);
 //       document.addEventListener('mouseup', handleMouseUp);
-      
+
 //       return () => {
 //         document.removeEventListener('mousemove', handleVerticalMouseMove);
 //         document.removeEventListener('mouseup', handleMouseUp);
@@ -165,7 +162,7 @@
 //     } else {
 //       document.body.classList.remove('select-none');
 //     }
-    
+
 //     return () => {
 //       document.body.classList.remove('select-none');
 //     };
@@ -177,14 +174,14 @@
 //       <div className="h-16 bg-slate-800 flex items-center px-6">
 //         <h1 className="text-white text-xl font-semibold">Code Practice Platform</h1>
 //       </div>
-      
+
 //       {/* Main content area */}
-//       <div 
+//       <div
 //         ref={containerRef}
 //         className="flex flex-1 overflow-hidden"
 //       >
 //         {/* Question Panel */}
-//         <div 
+//         <div
 //           className="flex flex-col bg-white dark:bg-slate-800 shadow-xl border-r border-gray-200 dark:border-slate-700 transition-all duration-100 ease-out overflow-hidden"
 //           style={{ width: `${leftPanelWidth}%` }}
 //         >
@@ -200,7 +197,7 @@
 //               </div>
 //             </div>
 //           </div>
-          
+
 //           {/* Content */}
 //           <div className="flex-1 overflow-y-auto p-6">
 //             <QuestionPanel question={question} />
@@ -208,14 +205,14 @@
 //         </div>
 
 //         {/* Horizontal Drag Handle */}
-//         <DragHandle 
-//           onDrag={handleHorizontalMouseDown} 
+//         <DragHandle
+//           onDrag={handleHorizontalMouseDown}
 //           isResizing={isResizingHorizontal}
 //           orientation="vertical"
 //         />
 
 //         {/* Code Panel */}
-//         <div 
+//         <div
 //           ref={rightPanelRef}
 //           className="flex flex-col bg-white dark:bg-slate-800 shadow-xl transition-all duration-100 ease-out overflow-hidden"
 //           style={{ width: `${100 - leftPanelWidth}%` }}
@@ -233,24 +230,24 @@
 //               </div>
 //             </div>
 //           </div>
-          
+
 //           {/* Code Editor */}
-//           <div 
+//           <div
 //             className="bg-slate-900 overflow-hidden"
 //             style={{ height: `${codeEditorHeight}%` }}
 //           >
 //             <CodeEditor code={code} onChange={setCode} language={language} />
 //           </div>
-          
+
 //           {/* Vertical Drag Handle */}
-//           <DragHandle 
-//             onDrag={handleVerticalMouseDown} 
+//           <DragHandle
+//             onDrag={handleVerticalMouseDown}
 //             isResizing={isResizingVertical}
 //             orientation="horizontal"
 //           />
-          
+
 //           {/* Output Section */}
-//           <div 
+//           <div
 //             className="flex flex-col bg-slate-100 dark:bg-slate-700 border-t border-slate-200 dark:border-slate-600 overflow-hidden"
 //             style={{ height: `${100 - codeEditorHeight}%` }}
 //           >
@@ -266,7 +263,7 @@
 //                 />
 //               </div>
 //             </div>
-            
+
 //             {/* Output Box */}
 //             <div className="flex-1 p-4 overflow-hidden">
 //               <OutputBox output={output} />
@@ -299,7 +296,7 @@ export default function PracticePage() {
     javascript: `\nfunction main(input) {\n  // your code here\n}`,
     python: `def main():\n    # your code here\n    pass`,
     java: `public class Main {\n  public static void main(String[] args) {\n    // your code here\n  }\n}`,
-    cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n  // your code here\n  return 0;\n}`
+    cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n  // your code here\n  return 0;\n}`,
   };
 
   const [language, setLanguage] = useState("javascript");
@@ -309,10 +306,10 @@ export default function PracticePage() {
   const [codeEditorHeight, setCodeEditorHeight] = useState(70);
   const [isResizingHorizontal, setIsResizingHorizontal] = useState(false);
   const [isResizingVertical, setIsResizingVertical] = useState(false);
-  
+
   const containerRef = useRef(null);
   const rightPanelRef = useRef(null);
-  
+
   // Fetch POTD on component mount
   useEffect(() => {
     dispatch(fetchPotd());
@@ -331,63 +328,72 @@ export default function PracticePage() {
   const handleHorizontalMouseDown = useCallback((e) => {
     e.preventDefault();
     setIsResizingHorizontal(true);
-    document.body.style.cursor = 'col-resize';
-    document.body.style.userSelect = 'none';
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
   }, []);
 
   // Handle vertical drag start (between code editor and output)
   const handleVerticalMouseDown = useCallback((e) => {
     e.preventDefault();
     setIsResizingVertical(true);
-    document.body.style.cursor = 'row-resize';
-    document.body.style.userSelect = 'none';
+    document.body.style.cursor = "row-resize";
+    document.body.style.userSelect = "none";
   }, []);
 
   // Handle horizontal drag move
-  const handleHorizontalMouseMove = useCallback((e) => {
-    if (!isResizingHorizontal || !containerRef.current) return;
-    
-    const container = containerRef.current;
-    const containerRect = container.getBoundingClientRect();
-    const newLeftWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100;
-    
-    // Constrain between 20% and 80%
-    const constrainedWidth = Math.min(Math.max(newLeftWidth, 20), 80);
-    setLeftPanelWidth(constrainedWidth);
-  }, [isResizingHorizontal]);
+  const handleHorizontalMouseMove = useCallback(
+    (e) => {
+      if (!isResizingHorizontal || !containerRef.current) return;
+
+      const container = containerRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const newLeftWidth =
+        ((e.clientX - containerRect.left) / containerRect.width) * 100;
+
+      // Constrain between 20% and 80%
+      const constrainedWidth = Math.min(Math.max(newLeftWidth, 20), 80);
+      setLeftPanelWidth(constrainedWidth);
+    },
+    [isResizingHorizontal],
+  );
 
   // Handle vertical drag move
-  const handleVerticalMouseMove = useCallback((e) => {
-    if (!isResizingVertical || !rightPanelRef.current) return;
-    
-    const rightPanel = rightPanelRef.current;
-    const rightPanelRect = rightPanel.getBoundingClientRect();
-    const headerHeight = 80; // Approximate header height
-    const availableHeight = rightPanelRect.height - headerHeight;
-    const newCodeHeight = ((e.clientY - rightPanelRect.top - headerHeight) / availableHeight) * 100;
-    
-    // Constrain between 30% and 85%
-    const constrainedHeight = Math.min(Math.max(newCodeHeight, 30), 85);
-    setCodeEditorHeight(constrainedHeight);
-  }, [isResizingVertical]);
+  const handleVerticalMouseMove = useCallback(
+    (e) => {
+      if (!isResizingVertical || !rightPanelRef.current) return;
+
+      const rightPanel = rightPanelRef.current;
+      const rightPanelRect = rightPanel.getBoundingClientRect();
+      const headerHeight = 80; // Approximate header height
+      const availableHeight = rightPanelRect.height - headerHeight;
+      const newCodeHeight =
+        ((e.clientY - rightPanelRect.top - headerHeight) / availableHeight) *
+        100;
+
+      // Constrain between 30% and 85%
+      const constrainedHeight = Math.min(Math.max(newCodeHeight, 30), 85);
+      setCodeEditorHeight(constrainedHeight);
+    },
+    [isResizingVertical],
+  );
 
   // Handle mouse up for both directions
   const handleMouseUp = useCallback(() => {
     setIsResizingHorizontal(false);
     setIsResizingVertical(false);
-    document.body.style.cursor = '';
-    document.body.style.userSelect = '';
+    document.body.style.cursor = "";
+    document.body.style.userSelect = "";
   }, []);
 
   // Add/remove event listeners for horizontal drag
   useEffect(() => {
     if (isResizingHorizontal) {
-      document.addEventListener('mousemove', handleHorizontalMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-      
+      document.addEventListener("mousemove", handleHorizontalMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+
       return () => {
-        document.removeEventListener('mousemove', handleHorizontalMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
+        document.removeEventListener("mousemove", handleHorizontalMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
       };
     }
   }, [isResizingHorizontal, handleHorizontalMouseMove, handleMouseUp]);
@@ -395,12 +401,12 @@ export default function PracticePage() {
   // Add/remove event listeners for vertical drag
   useEffect(() => {
     if (isResizingVertical) {
-      document.addEventListener('mousemove', handleVerticalMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-      
+      document.addEventListener("mousemove", handleVerticalMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+
       return () => {
-        document.removeEventListener('mousemove', handleVerticalMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
+        document.removeEventListener("mousemove", handleVerticalMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
       };
     }
   }, [isResizingVertical, handleVerticalMouseMove, handleMouseUp]);
@@ -408,13 +414,13 @@ export default function PracticePage() {
   // Prevent text selection during resize
   useEffect(() => {
     if (isResizingHorizontal || isResizingVertical) {
-      document.body.classList.add('select-none');
+      document.body.classList.add("select-none");
     } else {
-      document.body.classList.remove('select-none');
+      document.body.classList.remove("select-none");
     }
-    
+
     return () => {
-      document.body.classList.remove('select-none');
+      document.body.classList.remove("select-none");
     };
   }, [isResizingHorizontal, isResizingVertical]);
 
@@ -424,7 +430,9 @@ export default function PracticePage() {
       <div className="h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto"></div>
-          <p className="mt-4 text-slate-600 dark:text-slate-300">Loading today's problem...</p>
+          <p className="mt-4 text-slate-600 dark:text-slate-300">
+            Loading today's problem...
+          </p>
         </div>
       </div>
     );
@@ -436,9 +444,11 @@ export default function PracticePage() {
       <div className="h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center">
         <div className="text-center">
           <div className="text-red-500 text-6xl mb-4">⚠️</div>
-          <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mb-2">Failed to Load Problem</h2>
+          <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mb-2">
+            Failed to Load Problem
+          </h2>
           <p className="text-slate-600 dark:text-slate-400 mb-4">{error}</p>
-          <button 
+          <button
             onClick={() => dispatch(fetchPotd())}
             className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
           >
@@ -455,8 +465,12 @@ export default function PracticePage() {
       <div className="h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center">
         <div className="text-center">
           <div className="text-slate-400 text-6xl mb-4">📝</div>
-          <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mb-2">No Problem Available</h2>
-          <p className="text-slate-600 dark:text-slate-400">No problem of the day found for your current level.</p>
+          <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 mb-2">
+            No Problem Available
+          </h2>
+          <p className="text-slate-600 dark:text-slate-400">
+            No problem of the day found for your current level.
+          </p>
         </div>
       </div>
     );
@@ -471,14 +485,11 @@ export default function PracticePage() {
           Level {potd.level} • {potd.difficulty}
         </div>
       </div> */}
-      
+
       {/* Main content area */}
-      <div 
-        ref={containerRef}
-        className="flex flex-1 overflow-hidden"
-      >
+      <div ref={containerRef} className="flex flex-1 overflow-hidden">
         {/* Question Panel */}
-        <div 
+        <div
           className="flex flex-col bg-white dark:bg-slate-800 shadow-xl border-r border-gray-200 dark:border-slate-700 transition-all duration-100 ease-out overflow-hidden"
           style={{ width: `${leftPanelWidth}%` }}
         >
@@ -491,7 +502,7 @@ export default function PracticePage() {
               </div>
             </div>
           </div>
-          
+
           {/* Content */}
           <div className="flex-1 overflow-y-auto p-6">
             <QuestionPanel question={potd} />
@@ -499,14 +510,14 @@ export default function PracticePage() {
         </div>
 
         {/* Horizontal Drag Handle */}
-        <DragHandle 
-          onDrag={handleHorizontalMouseDown} 
+        <DragHandle
+          onDrag={handleHorizontalMouseDown}
           isResizing={isResizingHorizontal}
           orientation="vertical"
         />
 
         {/* Code Panel */}
-        <div 
+        <div
           ref={rightPanelRef}
           className="flex flex-col bg-white dark:bg-slate-800 shadow-xl transition-all duration-100 ease-out overflow-hidden"
           style={{ width: `${100 - leftPanelWidth}%` }}
@@ -521,36 +532,36 @@ export default function PracticePage() {
               </div>
             </div>
           </div>
-          
+
           {/* Code Editor */}
-          <div 
+          <div
             className="bg-slate-900 overflow-hidden"
             style={{ height: `${codeEditorHeight}%` }}
           >
             <CodeEditor code={code} onChange={setCode} language={language} />
           </div>
-          
+
           {/* Vertical Drag Handle */}
-          <DragHandle 
-            onDrag={handleVerticalMouseDown} 
+          <DragHandle
+            onDrag={handleVerticalMouseDown}
             isResizing={isResizingVertical}
             orientation="horizontal"
           />
-          
+
           {/* Output Section */}
-          <div 
+          <div
             className="flex flex-col bg-slate-100 dark:bg-slate-700 border-t border-slate-200 dark:border-slate-600 overflow-hidden"
             style={{ height: `${100 - codeEditorHeight}%` }}
           >
             {/* Actions */}
             <div className="p-4 border-b border-slate-200 dark:border-slate-600 shrink-0">
               <div className="flex gap-3">
-                <CompileButton 
-                 code={code} 
-                    language={language} 
-                    publicTestCases={potd?.publicTestCases} // Add this prop
-                    setOutput={setOutput} 
-                  />
+                <CompileButton
+                  code={code}
+                  language={language}
+                  publicTestCases={potd?.publicTestCases} // Add this prop
+                  setOutput={setOutput}
+                />
                 <SubmitButton
                   code={code}
                   language={language}
@@ -559,7 +570,7 @@ export default function PracticePage() {
                 />
               </div>
             </div>
-            
+
             {/* Output Box */}
             <div className="flex-1 p-4 overflow-hidden">
               <OutputBox output={output} />

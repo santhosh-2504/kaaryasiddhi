@@ -1,5 +1,5 @@
-import LevelHeader from './LevelHeader';
-import TaskList from '../task/TaskList';
+import LevelHeader from "./LevelHeader";
+import TaskList from "../task/TaskList";
 
 const LevelCard = ({
   level,
@@ -16,11 +16,10 @@ const LevelCard = ({
   onToggle,
   onSubmissionInputChange,
   onShowSubmissionForm,
-  onSubmitTask
+  onSubmitTask,
 }) => {
   return (
     <div className="relative bg-white dark:bg-slate-800 shadow-lg rounded-xl border border-gray-100 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:shadow-xl">
-      
       {/* Lock Icon at Top-Right
       {isLocked && (
         <div className="absolute top-4 right-4 z-10">

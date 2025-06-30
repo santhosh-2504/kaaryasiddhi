@@ -1,5 +1,5 @@
-import TaskItem from './TaskItem';
-import { useState } from 'react';
+import TaskItem from "./TaskItem";
+import { useState } from "react";
 const TaskList = ({
   tasks,
   isLoading,
@@ -12,7 +12,7 @@ const TaskList = ({
   levelNumber,
   onSubmissionInputChange,
   onShowSubmissionForm,
-  onSubmitTask
+  onSubmitTask,
 }) => {
   if (isLoading) {
     return (
@@ -21,7 +21,9 @@ const TaskList = ({
           <div className="animate-spin rounded-full h-10 w-10 border-2 border-slate-200 dark:border-slate-700"></div>
           <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-emerald-600 absolute top-0 left-0"></div>
         </div>
-        <span className="ml-4 text-slate-600 dark:text-slate-300 font-medium">Loading tasks...</span>
+        <span className="ml-4 text-slate-600 dark:text-slate-300 font-medium">
+          Loading tasks...
+        </span>
       </div>
     );
   }
@@ -29,13 +31,13 @@ const TaskList = ({
   const [expandedTask, setExpandedTask] = useState(null);
   const [showResubmitForm, setShowResubmitForm] = useState({});
 
-// Add handler function
-const handleShowResubmitForm = (taskId) => {
-  setShowResubmitForm(prev => ({
-    ...prev,
-    [taskId]: true
-  }));
-};
+  // Add handler function
+  const handleShowResubmitForm = (taskId) => {
+    setShowResubmitForm((prev) => ({
+      ...prev,
+      [taskId]: true,
+    }));
+  };
 
   if (!tasks?.length) {
     return (
@@ -44,8 +46,18 @@ const handleShowResubmitForm = (taskId) => {
           <div className="absolute inset-0 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 rounded-2xl shadow-inner"></div>
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-3xl">
-              <svg className="w-8 h-8 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                className="w-8 h-8 text-slate-400 dark:text-slate-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
             </div>
           </div>
@@ -61,13 +73,14 @@ const handleShowResubmitForm = (taskId) => {
   }
 
   // Calculate completion stats
-  const completedTasks = tasks.filter(task => {
+  const completedTasks = tasks.filter((task) => {
     const submission = submissions[task._id];
-    return submission && submission.status === 'approved';
+    return submission && submission.status === "approved";
   }).length;
 
   const totalTasks = tasks.length;
-  const completionPercentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+  const completionPercentage =
+    totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
   return (
     <div className="space-y-6">
@@ -75,8 +88,16 @@ const handleShowResubmitForm = (taskId) => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl shadow-lg">
-            <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+            <svg
+              className="w-5 h-5 text-white"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                clipRule="evenodd"
+              />
             </svg>
           </div>
           <div>
@@ -88,7 +109,7 @@ const handleShowResubmitForm = (taskId) => {
             </p>
           </div>
         </div>
-        
+
         {/* Progress Circle */}
         <div className="relative w-16 h-16">
           <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
@@ -125,14 +146,14 @@ const handleShowResubmitForm = (taskId) => {
       <div className="grid gap-4">
         {tasks.map((task, index) => {
           const submission = submissions[task._id];
-          const isCompleted = submission && submission.status === 'approved';
-          
+          const isCompleted = submission && submission.status === "approved";
+
           return (
             <div
               key={task._id}
               className="animate-fade-in"
               style={{
-                animationDelay: `${index * 50}ms`
+                animationDelay: `${index * 50}ms`,
               }}
             >
               <TaskItem
@@ -141,7 +162,7 @@ const handleShowResubmitForm = (taskId) => {
                 submissionLoading={submissionLoading[task._id]}
                 submissionError={submissionError}
                 isAuthenticated={isAuthenticated}
-                submissionInput={submissionInputs[task._id] || ''}
+                submissionInput={submissionInputs[task._id] || ""}
                 showForm={showSubmissionForm[task._id]}
                 levelNumber={levelNumber}
                 onSubmissionInputChange={onSubmissionInputChange}
@@ -193,7 +214,7 @@ const handleShowResubmitForm = (taskId) => {
             transform: translateY(0);
           }
         }
-        
+
         .animate-fade-in {
           animation: fade-in 0.4s ease-out forwards;
           opacity: 0;

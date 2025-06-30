@@ -56,18 +56,20 @@ export default catchAsync(async (req, res) => {
     });
 
     if (existingSubmission) {
-      if (existingSubmission.status === 'rejected') {
+      if (existingSubmission.status === "rejected") {
         existingSubmission.submissionLink = submissionLink;
-        existingSubmission.status = 'pending';
+        existingSubmission.status = "pending";
         existingSubmission.submittedAt = Date.now();
         existingSubmission.reviewedAt = undefined;
         existingSubmission.remarks = undefined;
         existingSubmission.score = null;
         await existingSubmission.save();
 
-        const populatedSubmission = await Submission.findById(existingSubmission._id)
-          .populate('taskId', 'title type optional')
-          .populate('userId', 'name email');
+        const populatedSubmission = await Submission.findById(
+          existingSubmission._id,
+        )
+          .populate("taskId", "title type optional")
+          .populate("userId", "name email");
 
         return res.status(200).json({
           success: true,
@@ -91,15 +93,14 @@ export default catchAsync(async (req, res) => {
     });
 
     const populatedSubmission = await Submission.findById(newSubmission._id)
-      .populate('taskId', 'title type optional')
-      .populate('userId', 'name email');
+      .populate("taskId", "title type optional")
+      .populate("userId", "name email");
 
     return res.status(201).json({
       success: true,
       message: "Task submitted successfully",
       data: populatedSubmission,
     });
-
   } catch (error) {
     console.error("Submission error:", error);
     return res.status(500).json({

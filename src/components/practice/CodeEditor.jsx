@@ -25,7 +25,7 @@ export default function CodeEditor({ code, onChange, language }) {
     });
 
     // Optional: disable Ctrl+V (paste)
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyV, () => {    });
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyV, () => {});
   };
 
   return (

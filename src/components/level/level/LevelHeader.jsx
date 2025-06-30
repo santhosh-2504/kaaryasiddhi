@@ -1,21 +1,21 @@
-import { ChevronDown, ChevronUp, Lock } from 'lucide-react';
-import { useSelector } from 'react-redux';
+import { ChevronDown, ChevronUp, Lock } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const LevelHeader = ({ level, index, isOpen, isLocked, onToggle }) => {
   const { user } = useSelector((state) => state.user);
   const userCurrentLevel = user?.isSubscribed ? (user?.currentLevel ?? 0) : 0;
 
   const getLevelIcon = (levelNumber, index) => {
-    const icons = ['⚡', '🔥', '💎', '🌟', '👑', '🚀', '💫', '🎯', '⭐', '🏆'];
+    const icons = ["⚡", "🔥", "💎", "🌟", "👑", "🚀", "💫", "🎯", "⭐", "🏆"];
     return icons[index % icons.length];
   };
 
   const gradientColors = [
-    'from-purple-600 to-pink-600',
-    'from-cyan-600 to-blue-600',
-    'from-emerald-600 to-teal-600',
-    'from-orange-600 to-red-600',
-    'from-violet-600 to-purple-600'
+    "from-purple-600 to-pink-600",
+    "from-cyan-600 to-blue-600",
+    "from-emerald-600 to-teal-600",
+    "from-orange-600 to-red-600",
+    "from-violet-600 to-purple-600",
   ];
   const gradientClass = gradientColors[index % gradientColors.length];
   const isLevelLocked = level.levelNumber > userCurrentLevel;
@@ -30,8 +30,12 @@ const LevelHeader = ({ level, index, isOpen, isLocked, onToggle }) => {
 
       <div className="flex items-center space-x-6 relative z-10">
         <div className="relative group/icon">
-          <div className={`absolute -inset-2 bg-gradient-to-r ${gradientClass} rounded-full blur opacity-40 group-hover/icon:opacity-70 transition duration-300 animate-pulse`} />
-          <div className={`relative bg-gradient-to-r ${gradientClass} p-4 rounded-full shadow-2xl transform group-hover/icon:scale-110 group-hover/icon:rotate-12 transition-all duration-300`}>
+          <div
+            className={`absolute -inset-2 bg-gradient-to-r ${gradientClass} rounded-full blur opacity-40 group-hover/icon:opacity-70 transition duration-300 animate-pulse`}
+          />
+          <div
+            className={`relative bg-gradient-to-r ${gradientClass} p-4 rounded-full shadow-2xl transform group-hover/icon:scale-110 group-hover/icon:rotate-12 transition-all duration-300`}
+          >
             <span className="text-2xl filter drop-shadow-md dark:drop-shadow-lg text-black dark:text-white">
               {getLevelIcon(level.levelNumber, index)}
             </span>

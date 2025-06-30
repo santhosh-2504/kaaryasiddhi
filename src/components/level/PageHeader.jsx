@@ -6,14 +6,15 @@ const PageHeader = () => {
           <span className="text-2xl">📈</span>
         </div>
       </div>
-      
+
       <h1 className="text-4xl sm:text-5xl font-bold text-slate-800 dark:text-white mb-4 leading-tight">
-        Your Path to{' '}
+        Your Path to{" "}
         <span className="text-emerald-600 dark:text-emerald-400">Success</span>
       </h1>
-      
+
       <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-        Progress through structured levels, each designed to build your skills step by step
+        Progress through structured levels, each designed to build your skills
+        step by step
       </p>
     </div>
   );

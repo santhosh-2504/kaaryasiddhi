@@ -1,4 +1,5 @@
-# KaaryaSiddhi 🎯  
+# KaaryaSiddhi 🎯
+
 **Kaarya. Karma. Siddhi.**
 
 KaaryaSiddhi is a full-stack mentorship platform built for B.Tech students, aiming to transform complete beginners into industry-ready Full Stack Developers. It offers a structured level-based curriculum, task submission tracking, parent monitoring tools, and in-browser coding practice — all in one powerful platform.
@@ -27,6 +28,7 @@ Each student progresses at their own pace with weekly check-ins to ensure consis
 ## 🧩 Core Features
 
 ### 👨‍🎓 Student Panel
+
 - 📌 View Current Level & Progress
 - 📎 Submit Tasks (links, files, screenshots)
 - 🧪 Practice Coding in JS Playground
@@ -34,11 +36,13 @@ Each student progresses at their own pace with weekly check-ins to ensure consis
 - 🔓 Manual Upgrade after Task Validation
 
 ### 👪 Parent Panel
+
 - 📋 View Child’s Level, Tasks, and Fees
 - 💰 Upload Payment Proof
 - 📊 Monitor Progress & Status Transparently
 
 ### 🛠️ Admin Panel
+
 - 🎛️ Manage Students, Levels & Tasks
 - 🧑‍🏫 Validate Submissions & Promote Levels
 - 🔔 Manually Send Notifications
@@ -88,3 +92,4 @@ npm run dev
 
 # Visit
 https://kaaryasiddhi.vercel.app/
+```

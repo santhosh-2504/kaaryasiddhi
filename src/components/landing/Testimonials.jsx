@@ -54,22 +54,22 @@
 
 // export default Testimonials;
 
-import { Quote } from 'lucide-react';
-import PropTypes from 'prop-types';
+import { Quote } from "lucide-react";
+import PropTypes from "prop-types";
 
 const TestimonialCard = ({ quote, author, className }) => (
-  <div 
+  <div
     className={`bg-white dark:bg-slate-800 shadow-lg rounded-xl p-8 transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-100 dark:border-slate-700 ${className}`}
     role="article"
   >
     <div className="text-emerald-600 dark:text-emerald-400 mb-4 flex justify-center">
       <Quote className="w-8 h-8" aria-hidden="true" />
     </div>
-    
+
     <blockquote className="text-lg text-gray-700 dark:text-gray-300 mb-6 text-center leading-relaxed italic">
       "{quote}"
     </blockquote>
-    
+
     <div className="text-center">
       <cite className="text-emerald-700 dark:text-emerald-300 font-semibold not-italic">
         – {author}
@@ -81,27 +81,30 @@ const TestimonialCard = ({ quote, author, className }) => (
 TestimonialCard.propTypes = {
   quote: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
-const Testimonials = ({ className = '' }) => {
+const Testimonials = ({ className = "" }) => {
   const testimonials = [
     {
-      quote: "Hardworking, innovative, and tech-savvy—he’s a perfect fit for startups or corporates. Always finds smart, cost-effective solutions without compromising quality",
-      author: "Ram, founder of a tech startup"
+      quote:
+        "Hardworking, innovative, and tech-savvy—he’s a perfect fit for startups or corporates. Always finds smart, cost-effective solutions without compromising quality",
+      author: "Ram, founder of a tech startup",
     },
     {
-      quote: "I never thought I'd build a real project in my first year. KaaryaSiddhi made me believe I can.",
-      author: "Rohit, 1st Year BTech"
+      quote:
+        "I never thought I'd build a real project in my first year. KaaryaSiddhi made me believe I can.",
+      author: "Rohit, 1st Year BTech",
     },
     {
-      quote: "GitHub and LinkedIn were alien to me. Now I'm getting interview calls!",
-      author: "Anjali, 3rd Year ECE"
-    }
+      quote:
+        "GitHub and LinkedIn were alien to me. Now I'm getting interview calls!",
+      author: "Anjali, 3rd Year ECE",
+    },
   ];
 
   return (
-    <section 
+    <section
       className={`bg-gradient-to-br from-emerald-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-16 ${className}`}
       aria-label="Student testimonials"
     >
@@ -113,7 +116,7 @@ const Testimonials = ({ className = '' }) => {
           <div className="w-24 h-1 bg-emerald-600 dark:bg-emerald-400 mx-auto rounded-full"></div>
         </div>
 
-        <div 
+        <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
           role="region"
           aria-label="Student testimonials"
@@ -123,7 +126,7 @@ const Testimonials = ({ className = '' }) => {
               key={index}
               quote={testimonial.quote}
               author={testimonial.author}
-              className={index === 1 ? 'md:col-span-2 lg:col-span-1' : ''}
+              className={index === 1 ? "md:col-span-2 lg:col-span-1" : ""}
             />
           ))}
         </div>
@@ -139,7 +142,7 @@ const Testimonials = ({ className = '' }) => {
 };
 
 Testimonials.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Testimonials;
