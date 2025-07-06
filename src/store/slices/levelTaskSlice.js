@@ -56,7 +56,7 @@ export const {
 export const fetchTasksByLevel = (levelNumber) => async (dispatch) => {
   dispatch(fetchTasksRequest(levelNumber));
   try {
-    const response = await axios.get(`/api/task/${levelNumber}`, {
+    const response = await axios.get(`/api/todo/${levelNumber}`, {
       headers: { "Content-Type": "application/json" },
     });
 

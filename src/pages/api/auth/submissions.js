@@ -2,6 +2,7 @@ import { catchAsync } from "@/lib/middlewares/catchAsync";
 import { isAuthenticated } from "@/lib/middlewares/auth";
 import dbConnect from "@/lib/dbConnect";
 import { Submission } from "@/lib/models/Submission";
+import { Task } from "@/lib/models/Task";
 
 export default catchAsync(async (req, res) => {
   await dbConnect();

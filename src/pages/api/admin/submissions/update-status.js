@@ -1,10 +1,9 @@
 import { catchAsync } from "@/lib/middlewares/catchAsync";
 import dbConnect from "@/lib/dbConnect";
-import { Submission } from "@/lib/models/Submission";
+import { ToDoSubmission } from "@/lib/models/ToDoSubmission";
 import { User } from "@/lib/models/User";
 import jwt from "jsonwebtoken";
 
-// Add validation for required environment variables
 if (!process.env.JWT_SECRET_KEY) {
   throw new Error("JWT_SECRET_KEY must be defined in environment variables");
 }
@@ -18,7 +17,6 @@ export default catchAsync(async (req, res) => {
 
   await dbConnect();
 
-  // 1. Extract and verify token
   const token = req.cookies.token;
   if (!token) {
     return res.status(401).json({
@@ -39,23 +37,14 @@ export default catchAsync(async (req, res) => {
     });
   }
 
-  // 2. Fetch user and check role
   const user = await User.findById(decoded._id).select("-password");
-  if (!user) {
-    return res.status(401).json({
-      success: false,
-      message: "User not found",
-    });
-  }
-
-  if (user.role !== "admin") {
+  if (!user || user.role !== "admin") {
     return res.status(403).json({
       success: false,
       message: "Access denied: Admins only",
     });
   }
 
-  // 3. Extract and validate request body
   const { submissionId, status, score, remarks } = req.body;
 
   if (!submissionId || !status) {
@@ -72,7 +61,6 @@ export default catchAsync(async (req, res) => {
     });
   }
 
-  // 4. Validate based on status
   if (status === "approved") {
     if (score === undefined || score === null) {
       return res.status(400).json({
@@ -97,8 +85,7 @@ export default catchAsync(async (req, res) => {
     }
   }
 
-  // 5. Find and update submission
-  const submission = await Submission.findById(submissionId);
+  const submission = await ToDoSubmission.findById(submissionId);
   if (!submission) {
     return res.status(404).json({
       success: false,
@@ -106,14 +93,13 @@ export default catchAsync(async (req, res) => {
     });
   }
 
-  if (submission.status !== "pending") {
+  if (submission.status !== "submitted") {
     return res.status(400).json({
       success: false,
-      message: "Only pending submissions can be updated",
+      message: "Only submitted tasks can be reviewed",
     });
   }
 
-  // 6. Update submission
   const updateData = {
     status,
     reviewedAt: new Date(),
@@ -121,22 +107,20 @@ export default catchAsync(async (req, res) => {
 
   if (status === "approved") {
     updateData.score = score;
-    if (remarks && remarks.trim() !== "") {
-      updateData.remarks = remarks.trim();
-    }
-  } else if (status === "rejected") {
+    if (remarks?.trim()) updateData.remarks = remarks.trim();
+  } else {
     updateData.remarks = remarks.trim();
   }
 
-  const updatedSubmission = await Submission.findByIdAndUpdate(
+  const updatedSubmission = await ToDoSubmission.findByIdAndUpdate(
     submissionId,
     updateData,
-    { new: true },
+    { new: true }
   )
-    .populate("userId", "name email")
-    .populate("taskId", "title type levelNumber");
+    .populate("toDoId", "title levelNumber")
+    .populate("userId", "name email");
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     message: `Submission ${status} successfully`,
     data: updatedSubmission,
