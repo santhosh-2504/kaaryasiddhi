@@ -36,40 +36,6 @@ const MyProfile = () => {
           />
         </div>
 
-        {user?.role === "Job Seeker" && (
-          <div className="flex flex-col space-y-2">
-            <label className="text-gray-700 dark:text-gray-200">
-              My Preferred Job Niches
-            </label>
-            <div className="flex flex-col space-y-4">
-              <input
-                type="text"
-                disabled
-                value={user?.niches?.firstNiche || ""}
-                onChange={(e) => e.target.value}
-                className="px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 
-                         rounded-md text-gray-900 dark:text-white disabled:opacity-75"
-              />
-              <input
-                type="text"
-                disabled
-                value={user?.niches?.secondNiche || ""}
-                onChange={(e) => e.target.value}
-                className="px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 
-                         rounded-md text-gray-900 dark:text-white disabled:opacity-75"
-              />
-              <input
-                type="text"
-                disabled
-                value={user?.niches?.thirdNiche || ""}
-                onChange={(e) => e.target.value}
-                className="px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 
-                         rounded-md text-gray-900 dark:text-white disabled:opacity-75"
-              />
-            </div>
-          </div>
-        )}
-
         <div className="flex flex-col space-y-2">
           <label className="text-gray-700 dark:text-gray-200">
             Phone Number
@@ -78,6 +44,34 @@ const MyProfile = () => {
             type="number"
             disabled
             value={user?.phone || ""}
+            onChange={(e) => e.target.value}
+            className="px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 
+                     rounded-md text-gray-900 dark:text-white disabled:opacity-75"
+          />
+        </div>
+
+                <div className="flex flex-col space-y-2">
+          <label className="text-gray-700 dark:text-gray-200">
+            GitHub UserName
+          </label>
+          <input
+            type="text"
+            disabled
+            value={user?.githubUsername || ""}
+            onChange={(e) => e.target.value}
+            className="px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 
+                     rounded-md text-gray-900 dark:text-white disabled:opacity-75"
+          />
+        </div>
+
+        <div className="flex flex-col space-y-2">
+          <label className="text-gray-700 dark:text-gray-200">
+            LinkedIn Profile
+          </label>
+          <input
+            type="text"
+            disabled
+            value={user?.linkedinUsername || ""}
             onChange={(e) => e.target.value}
             className="px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 
                      rounded-md text-gray-900 dark:text-white disabled:opacity-75"

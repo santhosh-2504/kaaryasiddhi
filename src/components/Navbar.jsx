@@ -44,11 +44,17 @@ const Navbar = () => {
   };
 
   // Navigation links configuration
+  // const navigationLinks = [
+  //   { href: "/", label: "HOME" },
+  //   { href: "/path", label: "GROWTH ROADMAP" },
+  //   { href: "/resources", label: "RESOURCES" },
+  // ];
+
   const navigationLinks = [
-    { href: "/", label: "HOME" },
-    { href: "/path", label: "GROWTH ROADMAP" },
-    { href: "/resources", label: "RESOURCES" },
-  ];
+  ...(!isAuthenticated ? [{ href: "/", label: "HOME" }] : []),
+  { href: "/path", label: "GROWTH ROADMAP" },
+  { href: "/resources", label: "RESOURCES" },
+];
 
   const authenticatedLinks = [
     { href: "/practice", label: "PRACTICE" },

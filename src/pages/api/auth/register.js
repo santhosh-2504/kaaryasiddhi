@@ -102,6 +102,10 @@ export default async function handler(req, res) {
       phone: phone.toString(),
       parentPhone: parentPhone.toString(),
       role: "user",
+      githubUsername: req.body.githubUsername?.trim() || "",
+      linkedinUsername: req.body.linkedinUsername?.trim() || "",
+      profilePicture: req.body.profilePicture || "",
+
     });
 
     // Send token and response

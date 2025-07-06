@@ -8,15 +8,13 @@ import { LuMoveRight } from "react-icons/lu";
 import MyProfile from "@/components/dashboard/MyProfile";
 import UpdateProfile from "@/components/dashboard/UpdateProfile";
 import UpdatePassword from "@/components/dashboard/UpdatePassword";
-import FeePayment from "@/components/dashboard/FeePayment";
+// import FeePayment from "@/components/dashboard/FeePayment";
 import Keys from "@/components/dashboard/Keys";
 import Github from "@/components/dashboard/Github";
-// import DeleteAccount from "@/components/dashboard/DeleteAccount";
 
 const Dashboard = () => {
   const [show, setShow] = useState(false);
   const [componentName, setComponentName] = useState("My Profile");
-  // const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const { loading, isAuthenticated, error, user } = useSelector(
     (state) => state.user,
@@ -28,20 +26,6 @@ const Dashboard = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [componentName]);
-
-  // const handleLogoutClick = () => {
-  //   setShowLogoutModal(true);
-  // };
-
-  // const handleLogoutConfirm = () => {
-  //   dispatch(logout());
-  //   toast.success("Logged out successfully.");
-  //   setShowLogoutModal(false);
-  // };
-
-  // const handleLogoutCancel = () => {
-  //   setShowLogoutModal(false);
-  // };
 
   useEffect(() => {
     if (error && error !== "Internal Server Error") {
@@ -85,7 +69,7 @@ const Dashboard = () => {
                   { name: "My Profile", component: "My Profile" },
                   { name: "Update Profile", component: "Update Profile" },
                   { name: "Update Password", component: "Update Password" },
-                  { name: "Pay Fee", component: "Pay Fee" },
+                  // { name: "Pay Fee", component: "Pay Fee" },
                   { name: "Keys", component: "Keys" },
                   { name: "GitHub", component: "GitHub" },
                 ].map(({ name, component }, index) => (
@@ -101,25 +85,7 @@ const Dashboard = () => {
                     </button>
                   </li>
                 ))}
-                {/* <li>
-                  <button
-                    onClick={handleLogoutClick}
-                    className="w-full text-left text-red-500 hover:text-red-700"
-                  >
-                    Logout
-                  </button>
-                </li> */}
-                {/* <li>
-                  <button 
-                    onClick={() => {
-                      setComponentName("Delete Account");
-                      setShow(false);
-                    }}
-                    className="w-full text-left text-red-500 hover:text-red-700"
-                  >
-                    Delete Account
-                  </button>
-                </li> */}
+
               </ul>
             </div>
 
@@ -145,8 +111,8 @@ const Dashboard = () => {
                     return <UpdateProfile />;
                   case "Update Password":
                     return <UpdatePassword />;
-                  case "Pay Fee":
-                    return <FeePayment />;
+                  // case "Pay Fee":
+                  //   return <FeePayment />;
                   case "Keys":
                     return <Keys />;
                   case "GitHub":
@@ -161,36 +127,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-
-        {/* Logout Confirmation Modal
-        {showLogoutModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
-              <div className="text-center">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                  Confirm Logout
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  Are you sure you want to log out? You will need to sign in again to access your account.
-                </p>
-                <div className="flex space-x-4 justify-center">
-                  <button
-                    onClick={handleLogoutCancel}
-                    className="px-4 py-2 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleLogoutConfirm}
-                    className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-                  >
-                    Logout
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )} */}
       </section>
     </div>
   );

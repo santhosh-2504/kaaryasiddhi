@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import validator from "validator";
+import { Profiler } from "react";
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -80,6 +81,18 @@ const userSchema = new mongoose.Schema({
   resetPasswordOTPExpiry: {
     type: Date,
     select: false,
+  },
+  // Add these fields to your User schema
+  githubUsername: {
+    type: String,
+    maxLength: [39, "GitHub username too long"],
+  },
+  linkedinUsername: {
+    type: String,
+    maxLength: [100, "LinkedIn username too long"],
+  },
+  profilePicture: {
+    type: String,
   },
 });
 
