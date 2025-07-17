@@ -57,7 +57,7 @@ const Navbar = () => {
 ];
 
   const authenticatedLinks = [
-    { href: "/practice", label: "PRACTICE" },
+    { href: "/problems", label: "PROBLEMS" },
     { href: "/dashboard", label: "PROFILE" },
   ];
 
