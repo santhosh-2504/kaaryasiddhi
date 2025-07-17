@@ -35,11 +35,6 @@ Each student progresses at their own pace with weekly check-ins to ensure consis
 - 🧊 Freeze Streak (on request)
 - 🔓 Manual Upgrade after Task Validation
 
-### 👪 Parent Panel
-
-- 📋 View Child’s Level, Tasks, and Fees
-- 💰 Upload Payment Proof
-- 📊 Monitor Progress & Status Transparently
 
 ### 🛠️ Admin Panel
 
@@ -57,17 +52,16 @@ Each student progresses at their own pace with weekly check-ins to ensure consis
 - **Database**: MongoDB (Mongoose)
 - **Storage**: Cloudinary (for images & screenshots)
 - **Code Execution**: Custom runtime setup for JS + (Python, C, Java coming soon)
-- **Deployments**: Vercel (Frontend), Railway (optional for Judge0 backend)
+- **Deployments**: Vercel,
 
 ---
 
 ## 🎯 Special Highlights
 
 - 🧠 AI-Assisted Task Generation (future)
-- 🛑 Streak system **disabled** in MVP due to complexity
+- 🛑 Streak system **disabled** in MVP
 - 👨‍🏫 Manual but flexible validation for higher accuracy
 - 💻 POTD (Problem of the Day) **exclusive to desktop**
-- 🎥 Watch + Learn section (YouTube integration with progress tracking)
 
 ---
 
